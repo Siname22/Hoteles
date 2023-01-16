@@ -2,20 +2,18 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Habitacion;
-use App\Models\Cliente;
-use App\Models\Reserva;
+use App\Models\Client;
 
 return new class extends Migration {
     public function up()
     {
-        Schema::create('reserva', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->date('fecha_entrada');
             $table->date('fecha_salida');
             $table->double('precio');
             $table->string('observacion', 200);
-            $table->foreignIdFor(Cliente::class)
+            $table->foreignIdFor(Client::class)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
@@ -25,6 +23,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('reserva');
+        Schema::dropIfExists('reservas');
     }
 };

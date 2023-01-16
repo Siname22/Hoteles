@@ -3,12 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Cliente;
 
 return new class extends Migration {
     public function up()
     {
-        Schema::create('cliente', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 30);
             $table->string('apellidos', 60);
@@ -21,6 +20,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('cliente');
+        Schema::dropIfExists('clientes');
     }
 };

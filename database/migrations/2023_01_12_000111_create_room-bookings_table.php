@@ -2,22 +2,21 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Habitacion;
-use App\Models\Reserva;
-use App\Models\Habitacion_Reserva;
+use App\Models\Room;
+use App\Models\Booking;
 
 
 return new class extends Migration
 {
     public function up()
     {
-        Schema::create('z_reserva_habitacion', function (Blueprint $table) {
+        Schema::create('room_bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Habitacion::class)
+            $table->foreignIdFor(Room::class)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignIdFor(Reserva::class)
+            $table->foreignIdFor(Booking::class)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
@@ -27,6 +26,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('z_reserva_habitacion');
+        Schema::dropIfExists('reservas_habitacions');
     }
 };
