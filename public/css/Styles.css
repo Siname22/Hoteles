@@ -1,0 +1,44 @@
+form {
+    margin: 0;
+    padding: 0;
+}
+
+td > form * {
+    height: 20px;
+}
+
+form * {
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    height: 20px;
+}
+
+body > form > input {
+    margin-top: 10px;
+}
+
+table {
+    text-align: center;
+}
+
+img {
+    height: 20px;
+}
+
+td > form {
+    height: 20px;
+}
+
+input[type=image] {
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}

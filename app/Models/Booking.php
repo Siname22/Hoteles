@@ -9,12 +9,12 @@ class Booking extends Model
 {
     use HasFactory;
 
-    public function get_client()
+    public function client()
     {
         return $this->belongsTo(Client::class);
     }
 
-    public function get_room_bookings()
+    public function room_bookings()
     {
         return $this->hasMany(Room_booking::class);
     }
