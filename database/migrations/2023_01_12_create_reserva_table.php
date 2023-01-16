@@ -13,12 +13,8 @@ return new class extends Migration {
             $table->id();
             $table->date('fecha_entrada');
             $table->date('fecha_salida');
-            $table->double('precio_reserva');
-            $table->string('descripcion', 200);
-            $table->foreignIdFor(Habitacion::class)
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->double('precio');
+            $table->string('observacion', 200);
             $table->foreignIdFor(Cliente::class)
                 ->constrained()
                 ->onUpdate('cascade')

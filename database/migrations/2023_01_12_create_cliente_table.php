@@ -11,10 +11,10 @@ return new class extends Migration {
         Schema::create('cliente', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 30);
-            $table->string('apellidos', 15);
-            $table->string('dni', 9);
+            $table->string('apellidos', 60);
+            $table->char('dni', 9);
             $table->string('email', 40);
-            $table->string('telefono', 15);
+            $table->string('telefono', 20);
             $table->timestamps();
         });
     }

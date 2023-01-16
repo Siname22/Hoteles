@@ -11,11 +11,13 @@ return new class extends Migration
     {
         Schema::create('habitacion', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 20);
-            $table->string('tipo', 15);
+            $table->char('cod', 4);
+            $table->string('nombre', 200);
+            $table->string('tipo', 4);
             $table->string('estado', 5);
-            $table->integer('numero_camas');
+            $table->integer('num_camas');
             $table->double('precio_base');
+            $table->integer('max_ocupantes');
             $table->boolean('terraza');
             $table->timestamps();
         });
