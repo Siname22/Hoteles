@@ -8,7 +8,7 @@
 <input type="text" id="estado" name="estado" value="{{ $room->estado ?? '' }}"/> <br>
 
 <label for="num_camas">Numero de Camas: </label>
-<input type="number" id="num_camas" name="num_camas" value="{{ $room->num_camas ?? '' }}"/> <br>
+<input type="number" id="num_camas" name="num_camas" value="{{ $room->numero_camas ?? '' }}"/> <br>
 
 <label for="precio_base">Precio Base: </label>
 <input type="text" id="precio_base" name="precio" value="{{ $room->precio_base ?? '' }}"/> <br>
@@ -18,5 +18,5 @@
 <input type="number" id="max_ocupantes" name="max_ocupantes" value="{{ $room->max_ocupantes ?? '' }}"/> <br>
 
 <label for="terraza">Terraza: </label>
-<input type="checkbox" id="terraza" name="terraza"/> <br>
+<input type="checkbox" id="terraza" name="terraza" {{ $room->terraza ? 'checked' : '' }}/> <br>
 

@@ -45,7 +45,7 @@ class RoomController extends Controller
 
     public function show(Room $room)
     {
-        //
+        return view('paginas/rooms/show', compact('room'));
     }
 
     public function edit(Room $room)
@@ -77,11 +77,12 @@ class RoomController extends Controller
         $room->max_ocupantes    =   $request->max_ocupantes;
         $room->terraza          =   $request->terraza ? True : False;
         $room->save();
-        return redirect() -> route('rooms.index');
+        return redirect()->route('rooms.index');
     }
 
     public function destroy(Room $room)
     {
-        //
+        $room->delete();
+        return redirect()->route('rooms.index');
     }
 }

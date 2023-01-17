@@ -3,12 +3,11 @@
     <x-slot:titulo>Editar Reserva</x-slot:titulo>
     <x-slot:encabezado>Modifica la reserva</x-slot:encabezado>
 
-    <p>ID: {{ $booking->id }}</p>
     <p>Fecha Entrada: {{ $booking->fecha_entrada }}</p>
     <p>Fecha Salida: {{ $booking->fecha_salida }}</p>
     <p>Precio: {{ $booking->precio }}</p>
     <p>Observaciones: {{ $booking->observacion }}</p>
-    <p>ID Cliente: {{ $booking->id_cliente }}</p><br>
+    <p>Cliente: {{ $booking->client->nombre }}</p><br>
 
     <form action = '{{ route('bookings.destroy', $booking) }}' method = 'post'>
         @method('delete')

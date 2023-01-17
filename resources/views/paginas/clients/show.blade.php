@@ -3,7 +3,6 @@
     <x-slot:titulo>Editar Cliente</x-slot:titulo>
     <x-slot:encabezado>Modifica la cliente</x-slot:encabezado>
 
-    <p>ID: {{ $client->id }}</p>
     <p>Nombre: {{ $client->nombre }}</p>
     <p>Apellidos: {{ $client->apellidos }}</p>
     <p>DNI: {{ $client->dni }}</p>

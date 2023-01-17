@@ -7,7 +7,7 @@
         @method('post')
         @csrf
 
-        <x-rooms.campos :rooms='$room' /><br><br>
+        <x-rooms.campos/><br><br>
 
         <input class='button' type='submit' name='crear' value='Crear habitaciónes' />
     </form><br/>
