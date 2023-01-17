@@ -1,7 +1,7 @@
 <x-zz.base>
 
-    <x-slot:titulo>Personas</x-slot:titulo>
-    <x-slot:encabezado>Listado de personas</x-slot:encabezado>
+    <x-slot:titulo>Reservas</x-slot:titulo>
+    <x-slot:encabezado>Listado de reservas</x-slot:encabezado>
 
     <table border="1">
         <tr>

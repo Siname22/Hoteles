@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('bookings', \App\Http\Controllers\BookingController::class);
+Route::resource('clients', \App\Http\Controllers\ClientController::class);
