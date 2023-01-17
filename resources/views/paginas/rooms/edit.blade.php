@@ -1,21 +1,21 @@
 <x-zz.base>
 
-    <x-slot:titulo>Editar Reserva</x-slot:titulo>
-    <x-slot:encabezado>Modifica la reserva</x-slot:encabezado>
+    <x-slot:titulo>Editar Habitaciones</x-slot:titulo>
+    <x-slot:encabezado>Modifica las habitaciones</x-slot:encabezado>
 
-    <form action = '{{ route('bookings.update', $booking) }}' method = 'post'>
+    <form action = '{{ route('rooms.update', $rooms) }}' method = 'post'>
         @method('put')
 
-        <x-bookings.campos :booking='$booking' :clients='$clients' />
+        <x-rooms.campos :room='$room' :clients='$clients' />
 
-        <br><br><br><button type='submit'>Editar Reserva</button>
+        <br><br><br><button type='submit'>Editar Habitacion</button>
     </form>
 
-    <form action = '{{ route('bookings.destroy', $booking) }}' method = 'post'>
+    <form action = '{{ route('$rooms.destroy', $room) }}' method = 'post'>
         @method('delete')
-        <input type = 'submit' value = 'Eliminar Reserva'>
+        <input type = 'submit' value = 'Eliminar Habitacion'>
     </form><br>
 
-    <a href='{{ route('bookings.index') }}'>Volver al listado</a>
+    <a href='{{ route('rooms.index') }}'>Volver al listado</a>
 
 </x-zz.base>

@@ -1,17 +1,17 @@
 <x-zz.base>
 
-    <x-slot:titulo>Crear Reserva</x-slot:titulo>
-    <x-slot:encabezado>Crea una reserva</x-slot:encabezado>
+    <x-slot:titulo>Crear Habitacion</x-slot:titulo>
+    <x-slot:encabezado>Crea una habitacion</x-slot:encabezado>
 
-    <form action='{{ route('bookings.store') }}' method='post'>
+    <form action='{{ route('rooms.store') }}' method='post'>
         @method('post')
         @csrf
 
-        <x-bookings.campos :clients='$clients' /><br><br>
+        <x-rooms.campos :rooms='$room' /><br><br>
 
-        <input class='button' type='submit' name='crear' value='Crear reserva' />
+        <input class='button' type='submit' name='crear' value='Crear habitaciones' />
     </form><br/>
 
-    <a href='{{ route('bookings.index') }}'>Volver al listado</a>
+    <a href='{{ route('rooms.index') }}'>Volver al listado</a>
 
 </x-zz.base>
