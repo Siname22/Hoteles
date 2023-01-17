@@ -5,8 +5,8 @@
 
     <p>Código: {{ $room->codigo }}</p>
     <p>Nombre: {{ $room->nombre }}</p>
-    <p>Tipo: {{ $room->precio }}</p>
-    <p>Estado: {{ $room->observacion }}</p>
+    <p>Tipo: {{ $room->tipo }}</p>
+    <p>Estado: {{ $room->estado }}</p>
     <p>Número de camas: {{ $room->numero_camas }}</p>
     <p>Precio base: {{ $room->precio_base }}</p>
     <p>Máximo de ocupantes: {{ $room->max_ocupantes }}</p>
