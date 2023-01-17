@@ -18,5 +18,5 @@
 <input type="number" id="max_ocupantes" name="max_ocupantes" value="{{ $room->max_ocupantes ?? '' }}"/> <br>
 
 <label for="terraza">Terraza: </label>
-<input type="checkbox" id="terraza" name="terraza" value="{{ $room->terraza ?? '' }}"/> <br>
+<input type="checkbox" id="terraza" name="terraza"/> <br>
 
