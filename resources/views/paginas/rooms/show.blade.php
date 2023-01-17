@@ -1,21 +1,24 @@
 <x-zz.base>
 
-    <x-slot:titulo>Editar Reserva</x-slot:titulo>
-    <x-slot:encabezado>Modifica la reserva</x-slot:encabezado>
+    <x-slot:titulo>Editar Habitación</x-slot:titulo>
+    <x-slot:encabezado>Modifica la habitación</x-slot:encabezado>
 
-    <p>ID: {{ $booking->id }}</p>
-    <p>Fecha Entrada: {{ $booking->fecha_entrada }}</p>
-    <p>Fecha Salida: {{ $booking->fecha_salida }}</p>
-    <p>Precio: {{ $booking->precio }}</p>
-    <p>Observaciones: {{ $booking->observacion }}</p>
-    <p>ID Cliente: {{ $booking->id_cliente }}</p><br>
+    <p>ID: {{ $room->id }}</p>
+    <p>Código: {{ $room->codigo }}</p>
+    <p>Nombre: {{ $room->nombre }}</p>
+    <p>Tipo: {{ $room->precio }}</p>
+    <p>Estado: {{ $room->observacion }}</p>
+    <p>Número de camas: {{ $room->numero_camas }}</p><br>
+    <p>Precio base: {{ $room->precio_base }}</p><br>
+    <p>Máximo de ocupantes: {{ $room->max_ocupantes }}</p><br>
+    <p>Terraza: {{ $room->terraza ? "Sí" : "No" }}</p><br>
 
     <form action = '{{ route('bookings.destroy', $booking) }}' method = 'post'>
         @method('delete')
         <input type = 'submit' value = 'Eliminar Reserva'>
-    </form>
+    </form><br>
 
-    <a href = '{{ route('bookings.edit', $booking) }}'>Editar Reserva</a>
-    <br><br><a href = '{{ route('bookings.index') }}'>Listado Reservas</a>
+    <a href = '{{ route('rooms.edit', $booking) }}'>Editar Habitación</a>
+    <br><br><a href = '{{ route('rooms.index') }}'>Listado Habitaciones</a>
 
 </x-zz.base>

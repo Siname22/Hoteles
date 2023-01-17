@@ -36,8 +36,8 @@ class RoomController extends Controller
         $room->codigo = $request->codigo;
         $room->nombre = $request->codigo;
         $room->tipo = $request->codigo;
-        $room->estado = $request->estado;
-        $room->numero_camas = $request->numero_camas;
+        $room->estado = $request->codigo;
+        $room->numero_camas = $request->codigo;
         $room->precio_base = $request->precio_base;
         $room->max_ocupantes = $request->cmax_ocupantes;
         $room->terraza = $request->terraza;
