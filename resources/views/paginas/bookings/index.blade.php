@@ -46,12 +46,4 @@
 
     </table><br><br>
 
-    <button><a href='{{ route('bookings.create') }}'>Crear</a></button><br><br>
-
-    <a href=''>Listado de Clientes</a><br>
-
-    <a href=''>Listado de Habitaciones</a><br>
-
-    <a href=''>Listado de Reservas de habitaciones</a>
-
 </x-zz.base>
