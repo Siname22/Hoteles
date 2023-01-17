@@ -6,7 +6,7 @@
     <form action = '{{ route('rooms.update', $rooms) }}' method = 'post'>
         @method('put')
 
-        <x-rooms.campos :room='$room' :clients='$clients' />
+        <x-rooms.campos :room='$room'/>
 
         <br><br><br><button type='submit'>Editar Habitacion</button>
     </form>
