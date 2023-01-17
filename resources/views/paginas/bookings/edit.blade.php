@@ -6,7 +6,7 @@
     <form action = '{{ route('bookings.update', $booking) }}' method = 'post'>
         @method('put')
 
-        <x-bookings.campos :clients='$clients' />
+        <x-bookings.campos :booking='$booking' :clients='$clients' />
 
         <br><br><br><button type='submit'>Editar Reserva</button>
     </form>
@@ -14,7 +14,7 @@
     <form action = '{{ route('bookings.destroy', $booking) }}' method = 'post'>
         @method('delete')
         <input type = 'submit' value = 'Eliminar Reserva'>
-    </form>
+    </form><br>
 
     <a href='{{ route('bookings.index') }}'>Volver al listado</a>
 
