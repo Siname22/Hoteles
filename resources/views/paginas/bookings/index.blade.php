@@ -5,8 +5,6 @@
 
     <table border="1">
         <tr>
-            <th>Fecha de entrada</th>
-            <th>Fecha de salida</th>
             <th>Precio</th>
             <th>Observación</th>
             <th>Cliente</th>
@@ -14,13 +12,6 @@
         </tr>
         @foreach ($bookings as $booking)
             <tr>
-                <td>
-                    <a href='{{ route('bookings.show', $booking) }}'>{{ $booking->fecha_entrada }}</a>
-                </td>
-
-                <td>
-                    <a href='{{ route('bookings.show', $booking) }}'>{{ $booking->fecha_salida }} </a>
-                </td>
                 <td>
                     <a href='{{ route('bookings.show', $booking) }}'>{{ $booking->precio }} </a>
                 </td>

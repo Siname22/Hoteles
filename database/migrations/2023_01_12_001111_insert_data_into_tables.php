@@ -26,15 +26,15 @@ return new class extends Migration
             'telefono' => '9993'
         ]);
         $reserva1 = DB::table('bookings')->insertGetId([
-            'fecha_entrada' => '2022-01-22 17:30:00',
-            'fecha_salida' => '2022-01-25 17:30:01',
             'precio' => 500.0,
             'observacion' => 'reserva satisfactoria',
             'client_id' => $cliente1
         ]);
         DB::table('room_bookings')->insertGetId([
             'room_id' => $presidencial,
-            'booking_id' => $reserva1
+            'booking_id' => $reserva1,
+            'fecha_entrada' => '2022-01-22 17:30:00',
+            'fecha_salida' => '2022-01-25 17:30:01'
         ]);
 
 

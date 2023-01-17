@@ -3,8 +3,6 @@
     <x-slot:titulo>Editar Reserva</x-slot:titulo>
     <x-slot:encabezado>Modifica la reserva</x-slot:encabezado>
 
-    <p>Fecha Entrada: {{ $booking->fecha_entrada }}</p>
-    <p>Fecha Salida: {{ $booking->fecha_salida }}</p>
     <p>Precio: {{ $booking->precio }}</p>
     <p>Observaciones: {{ $booking->observacion }}</p>
     <p>Cliente: {{ $booking->client->nombre }}</p><br>

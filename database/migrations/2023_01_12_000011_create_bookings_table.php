@@ -9,8 +9,6 @@ return new class extends Migration {
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_entrada');
-            $table->date('fecha_salida');
             $table->double('precio');
             $table->string('observacion', 200);
             $table->foreignIdFor(Client::class)

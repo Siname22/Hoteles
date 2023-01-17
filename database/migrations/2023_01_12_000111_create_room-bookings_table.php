@@ -21,6 +21,8 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->date('fecha_entrada');
+            $table->date('fecha_salida');
         });
     }
 
