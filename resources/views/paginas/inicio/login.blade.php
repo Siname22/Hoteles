@@ -13,18 +13,17 @@
             </a>
         </div>
         <br/>
-        <br/>
-        <br/>
-        <div>
             <h1>INICIO DE SESIÓN</h1>
             <form method="get" action="rooms">
-                <label for="nombre">Nombre:</label>
+                <label id="label_login_txt" for="nombre">Nombre:</label>
                 <input type="text" id="nombre">
                 <br>
-                <label for="pass">Contraseña:</label>
+
+                <label id="label_login_txt" for="pass">Contraseña:</label>
                 <input type="text" id="pass">
-                <br><br>
-                <input type="submit">
+            </form>
+            <form action="login">
+                <input type="submit"  value="Log In" id='login'>
             </form>
         </div>
     </body>
