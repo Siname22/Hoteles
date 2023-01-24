@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>Incio</title>
+        <title>Login</title>
         <link rel='stylesheet' href='\css\Styles.css'>
     </head>
     <body>
@@ -23,5 +23,4 @@
             </form>
         </div>
     </body>
-
 </html>

@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>Incio</title>
+        <title>SignUp</title>
         <link rel='stylesheet' href='\css\Styles.css'>
     </head>
     <body>
