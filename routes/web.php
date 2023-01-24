@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('inicio/inicio');
+    return view('paginas/inicio/inicio');
 });
 Route::get('/login', function () {
-    return view('inicio/login');
+    return view('paginas/inicio/login');
 });
 Route::get('/sign_up', function () {
-    return view('inicio/sign_up');
+    return view('paginas/inicio/sign_up');
 });
 
 Route::resource('bookings', \App\Http\Controllers\BookingController::class);
