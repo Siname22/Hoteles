@@ -108,7 +108,18 @@ body {
     font-size: x-large;
     font-family: Arial;
 }
-#h1_form_white {
+#h1_form_signup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 70px;
+    color: blueviolet;
+    font-size: xx-large;
+    font-family: Arial;
+}
+#h1_form_login {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -120,10 +131,20 @@ body {
     font-family: Arial;
 }
 
-#label_login_txt{
+#label_login_txt {
     text-align: center;
     color: blueviolet;
     font-size: large;
     font-family: Arial;
     font-weight: bold;
 }
+.label {
+    font-family: Arial;
+    font-size: large;
+    color: blueviolet;
+}
+.input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+

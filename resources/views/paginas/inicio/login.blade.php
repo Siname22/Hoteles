@@ -13,7 +13,7 @@
             </a>
         </div>
         <br/>
-            <h1>INICIO DE SESIÓN</h1>
+            <h1 id='h1_form_login'>INICIO DE SESIÓN</h1>
             <form method="get" action="rooms">
                 <label id="label_login_txt" for="nombre">Nombre:</label>
                 <input type="text" id="nombre">
@@ -21,8 +21,6 @@
 
                 <label id="label_login_txt" for="pass">Contraseña:</label>
                 <input type="text" id="pass">
-            </form>
-            <form action="login">
                 <input type="submit"  value="Log In" id='login'>
             </form>
         </div>
