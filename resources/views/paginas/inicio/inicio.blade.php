@@ -2,11 +2,13 @@
 
 ?>
 
-<html>
+<html lang='es'>
 
     <head>
 
         <link rel='stylesheet' href='/css/Styles.css'>
+
+
 
     </head>
 
@@ -21,7 +23,7 @@
         <br/>
         <br/>
         <div id='box_form_buttons'>
-            <p></p>
+            <p id='p_login'>Inicia Sesión o Regístrate</p>
             <form action="login">
                 <input type="submit"  value="Log In" id='login'>
             </form>
