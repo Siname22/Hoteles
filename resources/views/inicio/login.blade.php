@@ -8,9 +8,10 @@
     </div>
     <div>
         <h1>INICIO DE SESIÓN</h1>
-        <form method="get" action="resources/views/paginas/rooms/index.blade.php">
+        <form method="get" action="rooms">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre">
+            <br>
             <label for="pass">Contraseña:</label>
             <input type="text" id="pass">
             <br>
