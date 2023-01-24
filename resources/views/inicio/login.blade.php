@@ -14,7 +14,7 @@
             <br>
             <label for="pass">Contraseña:</label>
             <input type="text" id="pass">
-            <br>
+            <br><br>
             <input type="submit">
         </form>
     </div>
