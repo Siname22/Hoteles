@@ -16,7 +16,7 @@
         <br/>
         <br/>
         <br/>
-        <div id='box_form_buttons'>
+        <div id='div_form_white'>
             <p id='p_login'>Inicia Sesión o Regístrate</p>
             <form action="login">
                 <input type="submit"  value="Log In" id='login'>
