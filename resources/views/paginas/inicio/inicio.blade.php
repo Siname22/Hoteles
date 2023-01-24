@@ -17,7 +17,7 @@
         <br/>
         <br/>
         <div id='div_form_white'>
-            <h1 id='h1_login'>Inicia Sesión o Regístrate</h1>
+            <h1 id='h1_start'>Inicia Sesión o Regístrate</h1>
             <form action="login">
                 <input type="submit"  value="Log In" id='login'>
             </form>

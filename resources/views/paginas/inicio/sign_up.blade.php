@@ -33,7 +33,7 @@
 
                 <br>
 
-                <label for="email" class='label'>Enail:</label>
+                <label for="email" class='label'>Email:</label>
                 <input type="text" id="email" class='input'>
 
                 <br>
@@ -44,7 +44,7 @@
                 <br>
 
                 <label for="pass" class='label'>Contraseña:</label>
-                <input type="text" id="pass" class='input'>
+                <input type="password" id="pass" class='input'>
 
                 <br><br>
 

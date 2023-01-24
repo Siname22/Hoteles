@@ -1,3 +1,4 @@
+/*Body, flex, que sea al medio y tenga abajo una imagen de fondo no-repeat*/
 body {
     display: flex;
     flex-direction: column;
@@ -9,6 +10,8 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+
+/*Div donde va el logo, flex, que sea al medio y tenga ancho 55% respecto al body*/
 #div_logo {
     object-fit: contain;
     display: flex;
@@ -18,6 +21,8 @@ body {
     width: 55%;
     overflow: hidden;
 }
+
+/*Imagen del logo, que tenga margen arriba y algo de margen abajo, y que se centre horizontalmente*/
 #logo {
     margin-top: 50px;
     margin-bottom: 30px;
@@ -25,6 +30,7 @@ body {
     justify-content: center;
 }
 
+/*Divs flex de cajitas con formularios, border redondos, con ancho y alto, para que quepan los elementos, y que este centrado*/
 #div_form_white {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -39,6 +45,8 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
+/*Boton redondeado login en el inicio, de bloque y letra grande*/
 #login {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -55,6 +63,12 @@ body {
     font-family: Arial;
 }
 
+/*Se pone en magenta, violeta mas oscuro cuando el cursor pasa por encima*/
+#login:hover {
+    background-color: darkmagenta;
+}
+
+/*Boton redondeado signup en el inicio, de bloque y letra grande*/
 #signup {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -69,11 +83,15 @@ body {
     line-height: 40px;
     font-size: x-large;
     font-family: Arial;
-
 }
 
-#btn_submit_signup {
+/*Se pone en magenta, violeta mas oscuro cuando el cursor pasa por encima*/
+#signup:hover {
+    background-color: darkmagenta;
+}
 
+/*Boton redondeado signup en el signup, de bloque y letra grande*/
+#btn_submit_signup {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -82,14 +100,41 @@ body {
     color: #f7f7f7;
     width: 200px;
     display: block;
-    margin-top: 45px;
+    margin-top: 30px;
     margin-bottom: 45px;
     line-height: 40px;
     font-size: x-large;
     font-family: Arial;
-
 }
 
+/*Se pone en magenta, violeta mas oscuro cuando el cursor pasa por encima*/
+#btn_submit_signup:hover {
+    background-color: darkmagenta;
+}
+
+/*Se pone en magenta, violeta mas oscuro cuando el cursor pasa por encima*/
+#btn_submit_login:hover {
+    background-color: darkmagenta;
+}
+
+/*Boton redondeado signup en el login, de bloque y letra grande*/
+#btn_submit_login {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: blueviolet;
+    color: #f7f7f7;
+    width: 200px;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 45px;
+    line-height: 40px;
+    font-size: x-large;
+    font-family: Arial;
+}
+
+/*Div flex, botones sumbit y centrados, separados de los inputs, paginas signup y login*/
 #div_btn_submit {
     width: 100%;
     display: flex;
@@ -97,7 +142,8 @@ body {
     align-items: center;
 }
 
-#h1_login {
+/*h1 flex, centrado, texto de inicia sesion o registrate pagina de inicio */
+#h1_start {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -108,43 +154,59 @@ body {
     font-size: x-large;
     font-family: Arial;
 }
+
+/*h1 flex, centrado, texto Registro pagina de signup */
 #h1_form_signup {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 70px;
+    margin-top: 62px;
     color: blueviolet;
     font-size: xx-large;
     font-family: Arial;
 }
+
+/*h1 flex, centrado, texto Inicia Sesion pagina de login */
 #h1_form_login {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 50px;
     color: blueviolet;
+    margin-top: 30px;
     font-size: xx-large;
     font-family: Arial;
 }
 
-#label_login_txt {
+/*labels centrados y negrita  */
+.label {
     text-align: center;
-    color: blueviolet;
-    font-size: large;
     font-family: Arial;
+    font-size: large;
+    color: blueviolet;
     font-weight: bold;
 }
-.label {
-    font-family: Arial;
-    font-size: large;
-    color: blueviolet;
-}
+
+/*inputs separados y redondeados  */
 .input {
     margin-top: 5px;
     margin-bottom: 5px;
+    border-radius: 8px;
 }
+/*inputs cuando cursor encima se pone borde violeta  */
+.input:hover {
+    border: 4px solid blueviolet;
+}
+
+/*inputs cuando escribes se pone violeta el borde del input  */
+.input:focus {
+    border: 4px solid blueviolet;
+}
+
+
+
+
 

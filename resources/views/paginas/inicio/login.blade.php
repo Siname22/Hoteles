@@ -13,15 +13,18 @@
             </a>
         </div>
         <br/>
+        <div id='div_form_white'>
             <h1 id='h1_form_login'>INICIO DE SESIÓN</h1>
             <form method="get" action="rooms">
-                <label id="label_login_txt" for="nombre">Nombre:</label>
-                <input type="text" id="nombre">
+                <label class="label" for="nombre">Nombre:</label>
+                <input type="text" id="nombre" class='input'>
                 <br>
 
-                <label id="label_login_txt" for="pass">Contraseña:</label>
-                <input type="text" id="pass">
-                <input type="submit"  value="Log In" id='login'>
+                <label class="label" for="pass">Contraseña:</label>
+                <input type="text" id="pass" class='input'>
+                <div id='div_btn_submit'>
+                    <input type="submit" value="Log In" id='btn_submit_login'>
+                </div>
             </form>
         </div>
     </body>
