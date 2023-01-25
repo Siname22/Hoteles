@@ -23,6 +23,7 @@ Route::get('/sign_up', function () {
     return view('paginas/inicio/sign_up');
 });
 
+Route::resource('room_bookings', \App\Http\Controllers\RoomBookingController::class);
 Route::resource('bookings', \App\Http\Controllers\BookingController::class);
 Route::resource('clients', \App\Http\Controllers\ClientController::class);
 Route::resource('rooms', \App\Http\Controllers\RoomController::class);

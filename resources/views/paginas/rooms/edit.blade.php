@@ -8,7 +8,7 @@
 
         <x-rooms.campos :room='$room'/>
 
-        <br><br><br><button type='submit'>Editar Habitación</button>
+        <br><br><br><input type='submit' value='Editar Habitación'/>
     </form>
 
     <form action = '{{ route('rooms.destroy', $room) }}' method = 'post'>

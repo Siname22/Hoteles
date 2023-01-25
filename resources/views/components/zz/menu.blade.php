@@ -5,7 +5,7 @@
     <a href='{{ route('clients.create') }}'>Crear cliente</a>
     <a href='{{ route('rooms.index') }}'>Habitaciones</a>
     <a href='{{ route('rooms.create') }}'>Crear habitación</a>
-    <a href=''>Reservas de habitación</a>
-    <a href=''>Crear reserva de habitación</a>
+    <a href='{{ route('room_bookings.index') }}'>Reservas de habitación</a>
+    <a href='{{ route('room_bookings.create') }}'>Crear reserva de habitación</a>
 </div>
 <hr>

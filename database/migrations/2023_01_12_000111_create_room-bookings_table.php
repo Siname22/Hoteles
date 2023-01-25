@@ -20,14 +20,14 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->timestamps();
             $table->date('fecha_entrada');
             $table->date('fecha_salida');
+            $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('reservas_habitacions');
+        Schema::dropIfExists('room_bookings');
     }
 };

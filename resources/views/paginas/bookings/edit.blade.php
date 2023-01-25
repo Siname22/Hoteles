@@ -8,7 +8,7 @@
 
         <x-bookings.campos :booking='$booking' :clients='$clients' />
 
-        <br><br><br><button type='submit'>Editar Reserva</button>
+        <br><br><br><input type='submit' value='Editar Reserva'/>
     </form>
 
     <form action = '{{ route('bookings.destroy', $booking) }}' method = 'post'>

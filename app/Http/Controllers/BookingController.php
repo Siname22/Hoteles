@@ -11,7 +11,7 @@ class BookingController extends Controller
 
     public function index()
     {
-        $bookings = Booking::orderBy('client_id')->get();
+        $bookings = Booking::orderBy('codigo')->get();
         return view('paginas/bookings/index', compact('bookings'));
     }
 
@@ -24,12 +24,14 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'codigo'        =>  'required',
             'precio'        =>  'required',
             'observacion'   =>  'required',
             'client_id'     =>  'required',
         ]);
 
         $booking                =   new Booking();
+        $booking->codigo        =   $request->codigo;
         $booking->precio        =   $request->precio;
         $booking->observacion   =   $request->observacion;
         $booking->client_id     =   $request->client_id;
@@ -52,14 +54,16 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         $this -> validate($request, [
+            'codigo'        =>  'required',
             'precio'        =>  'required',
             'observaciones' =>  'required',
-            'id_cliente'    =>  'required'
+            'client_id'     =>  'required'
         ]);
 
+        $booking->codigo         =   $request->codigo;
         $booking->precio        =   $request->precio;
         $booking->observaciones =   $request->observaciones;
-        $booking->id_cliente    =   $request->id_cliente;
+        $booking->client_id     =   $request->client_id;
         $booking->save();
 
         return redirect() -> route('bookings.index');

@@ -26,6 +26,7 @@ return new class extends Migration
             'telefono' => '9993'
         ]);
         $reserva1 = DB::table('bookings')->insertGetId([
+            'codigo' => 'aaaa',
             'precio' => 500.0,
             'observacion' => 'reserva satisfactoria',
             'client_id' => $cliente1

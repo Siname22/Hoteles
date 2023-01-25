@@ -9,12 +9,12 @@ class Room_booking extends Model
 {
     use HasFactory;
 
-    public function get_booking()
+    public function booking()
     {
         return $this->belongsTo(Booking::class);
     }
 
-    public function get_room()
+    public function room()
     {
         return $this->belongsTo(Room::class);
     }

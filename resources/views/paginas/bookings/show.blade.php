@@ -1,7 +1,7 @@
 <x-zz.base>
 
-    <x-slot:titulo>Editar Reserva</x-slot:titulo>
-    <x-slot:encabezado>Modifica la reserva</x-slot:encabezado>
+    <x-slot:titulo>Reserva</x-slot:titulo>
+    <x-slot:encabezado>Detalles de reserva</x-slot:encabezado>
 
     <p>Precio: {{ $booking->precio }}</p>
     <p>Observaciones: {{ $booking->observacion }}</p>

@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->char('codigo', 4);
             $table->double('precio');
             $table->string('observacion', 200);
             $table->foreignIdFor(Client::class)
@@ -21,6 +22,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('reservas');
+        Schema::dropIfExists('bookings');
     }
 };
