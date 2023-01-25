@@ -90,6 +90,6 @@ class RoomBookingController extends Controller
     public function destroy(Room_booking $room_booking)
     {
         $room_booking->delete();
-        return redirect()->route('bookings.index');
+        return redirect()->route('room_bookings.index');
     }
 }
