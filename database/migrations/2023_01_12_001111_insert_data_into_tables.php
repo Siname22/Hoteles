@@ -18,11 +18,18 @@ return new class extends Migration
             'max_ocupantes' => 4,
             'terraza' => '1'
         ]);
+        $usuario1 = DB::table('users')->insertGetId([
+            'name' => 'cliente1',
+            'email' => 'cliente1@mail.laravel',
+            'email_verified_at' => null,
+            'password' => 'cliente1',
+            'remember_token' => null
+        ]);
         $cliente1 = DB::table('clients')->insertGetId([
+            'user_id' => $usuario1,
             'nombre' => 'pepito',
             'apellidos' => 'benito',
             'dni' => '123456789',
-            'email' => 'pepitonujsjs',
             'telefono' => '9993'
         ]);
         $reserva1 = DB::table('bookings')->insertGetId([

@@ -47,7 +47,7 @@ class BookingController extends Controller
 
     public function edit(Booking $booking)
     {
-        $clients = Client::orderBy('nombre') -> get();
+        $clients = Client::orderBy('nombre')->get();
         return view('paginas/bookings/edit', compact('booking', 'clients'));
     }
 
