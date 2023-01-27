@@ -21,7 +21,7 @@
 
 
 <label for='fecha_entrada'>Fecha de entrada: </label>
-<input type='text' id='fecha_entrada' name='fecha_entrada' value='{{ $params['room_booking']->fecha_entrada ?? '' }}'><br>
+<input type='date' id='fecha_entrada' name='fecha_entrada' value='{{ $params['room_booking']->fecha_entrada ?? '' }}'><br>
 
 <label for='fecha_salida'>Fecha de salida: </label>
-<input type='text' id='fecha_salida' name='fecha_salida' value='{{ $params['room_booking']->fecha_salida ?? '' }}'>
+<input type='date' id='fecha_salida' name='fecha_salida' value='{{ $params['room_booking']->fecha_salida ?? '' }}'>
