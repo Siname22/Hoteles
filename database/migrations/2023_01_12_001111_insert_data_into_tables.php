@@ -2,6 +2,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -18,11 +19,12 @@ return new class extends Migration
             'max_ocupantes' => 4,
             'terraza' => '1'
         ]);
+        $password = 'cliente1';
         $usuario1 = DB::table('users')->insertGetId([
             'name' => 'cliente1',
             'email' => 'cliente1@mail.laravel',
             'email_verified_at' => null,
-            'password' => 'cliente1',
+            'password' => Hash::make($password),
             'remember_token' => null
         ]);
         $cliente1 = DB::table('clients')->insertGetId([
