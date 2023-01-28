@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/sign_up', function () {
         return view('paginas/inicio/sign_up');
     });
+    Route::get('/inicio_cliente', function () {
+        return view('paginas/inicio_cliente/inicio_cliente');
+    });
 
     Route::resource('room_bookings', \App\Http\Controllers\RoomBookingController::class);
     Route::resource('bookings', \App\Http\Controllers\BookingController::class);

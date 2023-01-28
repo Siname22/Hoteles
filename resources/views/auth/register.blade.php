@@ -43,9 +43,7 @@
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
-            @if (Route::has('login'))
-                <a href="{{ route('login') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Login</a>
-            @endif
+
             <x-primary-button class="ml-4">
                 {{ __('Register') }}
             </x-primary-button>

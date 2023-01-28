@@ -17,7 +17,7 @@
         <br/>
         <div id='div_form_white'>
             <h1 id='h1_form_signup'>REGISTRO</h1>
-            <form method="get" action="rooms">
+            <form method="get" action="inicio_cliente">
                 <label for="nombre" class='label'>Nombre:</label>
                 <input type="text" id="nombre" class='input'>
 

@@ -15,7 +15,7 @@
         <br/>
         <div id='div_form_white'>
             <h1 id='h1_form_login'>INICIO DE SESIÓN</h1>
-            <form method="get" action="rooms">
+            <form method="get" action="inicio_cliente">
                 <label class="label" for="nombre">Nombre:</label>
                 <input type="text" id="nombre" class='input'>
                 <br>
