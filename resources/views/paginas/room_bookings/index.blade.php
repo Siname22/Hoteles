@@ -1,30 +1,34 @@
-<x-zz.base>
+<x-zz.base2>
 
-    <x-slot:titulo>Reservas de habitaciones</x-slot:titulo>
-    <x-slot:encabezado>Listado de reservas de habitaciones</x-slot:encabezado>
+<x-slot:titulo>Mis Reservas</x-slot:titulo>
+<x-slot:encabezado>MIS RESERVAS</x-slot:encabezado>
 
-    <table border="1">
+    <br><table id='tabla'>
         <tr>
             <th>Habitación</th>
-            <th>Fecha de entrada</th>
-            <th>Fecha de salida</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th colspan='2'>Acciones</th>
         </tr>
+
         @foreach ($room_bookings as $room_booking)
+
             <tr>
+                <td>{{ $room_booking->room->nombre }}</td>
+                <td>{{ $room_booking->fecha_entrada }}</td>
+                <td>{{ $room_booking->fecha_salida }}</td>
                 <td>
-                    <a href='{{ route('room_bookings.show', $room_booking) }}'>{{ $room_booking->room->nombre }} </a>
-                </td>
+                    <form action='{{ route('room_bookings.show', $room_booking) }}' method='post'>
 
-                <td>
-                    <a href='{{ route('room_bookings.show', $room_booking) }}'>{{ $room_booking->fecha_entrada }}  </a>
-                </td>
+                        @method('get')
+                        @csrf
 
-                <td>
-                    <a href='{{ route('room_bookings.show', $room_booking ) }}'>{{ $room_booking->fecha_salida }} </a>
+                        <button type='submit'>Detalles</button>
+                    </form>
                 </td>
-
                 <td>
                     <form action='{{ route('room_bookings.destroy', $room_booking) }}' method='post'>
+
                         @method('delete')
                         @csrf
 
@@ -32,8 +36,9 @@
                     </form>
                 </td>
             </tr>
+
         @endforeach
 
     </table><br><br>
-
-</x-zz.base>
+    <input type="button" onclick="history.back()" value="Atrás">
+</x-zz.base2>

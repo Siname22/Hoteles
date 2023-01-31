@@ -17,11 +17,11 @@
     <br/>
     <br/>
     <div id='div_form_cliente'>
-        <form action="bookings">
+        <form action="room_bookings">
             <input type="submit" value="VER MIS
  RESERVAS" id='ver_reserva'>
         </form>
-        <form action="{{ route('bookings.create') }}">
+        <form action="room_bookings/create">
             <input type="submit" value="HACER UNA
  RESERVA" id='hacer_reserva'>
         </form>
