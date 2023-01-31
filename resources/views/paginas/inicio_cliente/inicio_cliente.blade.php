@@ -9,7 +9,7 @@
     </head>
 <body>
     <div id='div_logo'>
-        <a href='' id='div_logo'>
+        <a id='div_logo'>
             <img src="/img/logofinal.png" id='logo' alt='logo M2H' title='M2H logo'>
         </a>
     </div>

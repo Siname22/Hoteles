@@ -275,9 +275,16 @@ body {
 }
 
 #logo_left {
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-left: -20px;
+}
+
+#enlace_left {
     width: 10%;
-    height: 12%;
+    height: 10%;
     float: left;
     margin-left: -1500px;
-    margin-top: 40px;
+    margin-top: 50px;
 }

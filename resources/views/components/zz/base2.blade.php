@@ -5,7 +5,7 @@
         <link rel='stylesheet' href='{{ asset('css/Styles.css') }}'>
     </head>
     <body>
-        <img src="/img/logofinal.png" id='logo_left'>
+    <a id ='enlace_left' href='/inicio_cliente'><img src="/img/logofinal.png" id='logo_left'></a>
         <h1>{{ $encabezado ?? 'Encabezado' }}</h1>
         {{ $slot }}
     </body>
