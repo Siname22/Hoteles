@@ -25,7 +25,7 @@ Route::get('/inicio', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
-        return view('paginas/inicio/inicio');
+        return view('paginas/inicio_cliente/inicio_cliente');
     });
     Route::get('/login', function () {
         return view('paginas/inicio/login');
