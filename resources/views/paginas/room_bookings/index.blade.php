@@ -40,5 +40,9 @@
         @endforeach
 
     </table><br><br>
-    <input type="button" onclick="history.back()" value="Atrás">
+
+    <form action="inicio_cliente" method="get">
+        <input type="submit" value="Volver">
+    </form>
+
 </x-zz.base2>

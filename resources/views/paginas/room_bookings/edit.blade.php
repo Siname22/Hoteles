@@ -1,4 +1,4 @@
-<x-zz.base>
+<x-zz.base2>
 
     <x-slot:titulo>Editar Reserva de habitación</x-slot:titulo>
     <x-slot:encabezado>Modifica la reserva de habitación</x-slot:encabezado>
@@ -17,6 +17,5 @@
         <input type='submit' value='Eliminar Reserva de habitación'>
     </form><br>
 
-    <a href='{{ route('room_bookings.index') }}'>Volver al listado</a>
 
-</x-zz.base>
+</x-zz.base2>
