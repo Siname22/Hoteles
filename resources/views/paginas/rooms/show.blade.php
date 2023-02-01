@@ -25,7 +25,7 @@
     </table>
 
     <br>
-    <form action='{{ route('room_bookings.edit', $room) }}' method='get'>
+    <form action='{{ route('room_bookings.create', $room) }}' method='get'>
 
         <input class='button' type='submit' value='Añadir a la reserva'/>
     </form>
