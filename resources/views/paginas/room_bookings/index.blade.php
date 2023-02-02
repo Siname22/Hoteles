@@ -14,11 +14,11 @@
         @foreach ($room_bookings as $room_booking)
 
             <tr>
-                <td>{{ $room_booking->room->nombre }}</td>
+                <td>{{ $room_booking->nombre }}</td>
                 <td>{{ $room_booking->fecha_entrada }}</td>
                 <td>{{ $room_booking->fecha_salida }}</td>
                 <td>
-                    <form action='{{ route('room_bookings.show', $room_booking) }}' method='post'>
+                    <form action='{{ route('room_bookings.show', $room_booking->id) }}' method='post'>
 
                         @method('get')
                         @csrf
@@ -27,7 +27,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action='{{ route('room_bookings.destroy', $room_booking) }}' method='post'>
+                    <form action='{{ route('room_bookings.destroy', $room_booking->id) }}' method='post'>
 
                         @method('delete')
                         @csrf

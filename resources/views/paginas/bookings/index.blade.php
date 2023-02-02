@@ -1,4 +1,4 @@
-<x-zz.base>
+<x-zz.base2>
 
     <x-slot:titulo>Reservas</x-slot:titulo>
     <x-slot:encabezado>Listado de reservas</x-slot:encabezado>
@@ -27,6 +27,12 @@
                 </td>
 
                 <td>
+                    <form action='{{ route('room_bookings', $booking->id) }}'>
+                        <input type='submit' value='Ver asignaciones'/>
+                    </form>
+                </td>
+
+                <td>
                     <form action='{{ route('bookings.destroy', $booking->id) }}' method='post'>
                         @method('delete')
                         @csrf
@@ -39,4 +45,4 @@
 
     </table><br><br>
 
-</x-zz.base>
+</x-zz.base2>

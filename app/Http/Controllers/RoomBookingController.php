@@ -12,8 +12,7 @@ class RoomBookingController extends Controller
 
     public function index()
     {
-        $room_bookings = Room_booking::orderBy('room_id')->get();
-        return view('paginas/room_bookings/index', compact('room_bookings'));
+        return redirect(route('room_bookings'));
     }
 
 

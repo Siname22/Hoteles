@@ -25,15 +25,16 @@ Route::get('/inicio', function () {
     return view('paginas/bookings/index', compact('bookings', 'client'));
 })->middleware(['auth', 'verified'])->name('bookings');
 
+Route::get('/room_bookings{bookingId}', function ($bookingId) {
+    $room_bookings = DB::table('room_bookings')->join('rooms', 'room_id', 'LIKE', 'rooms.id')
+        ->select('room_bookings.*', 'rooms.nombre')
+        ->where('booking_id', $bookingId)->get();
+    return view('paginas/room_bookings/index', compact('room_bookings'));
+})->middleware(['auth', 'verified'])->name('room_bookings');
+
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('paginas/inicio_cliente/inicio_cliente');
-    });
-    Route::get('/login', function () {
-        return view('paginas/inicio/login');
-    });
-    Route::get('/sign_up', function () {
-        return view('paginas/inicio/sign_up');
     });
     Route::get('/inicio_cliente', function () {
         return view('paginas/inicio_cliente/inicio_cliente');
