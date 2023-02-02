@@ -291,3 +291,11 @@ body {
     margin-left: -1500px;
     margin-top: 50px;
 }
+#fila {
+    height: 30px;
+}
+#no_subrayado {
+    text-decoration: none;
+    color: black;
+    padding-top: 2px;
+}
