@@ -21,7 +21,7 @@
             <input type="submit" value="VER MIS
  RESERVAS" id='ver_reserva'>
         </form>
-        <form action="room_bookings/create">
+        <form action="rooms">
             <input type="submit" value="HACER UNA
  RESERVA" id='hacer_reserva'>
         </form>

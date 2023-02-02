@@ -1,4 +1,4 @@
-<x-zz.base>
+<x-zz.base2>
 
     <x-slot:titulo>Crear Reserva de habitación</x-slot:titulo>
     <x-slot:encabezado>Crea una reserva de habitación</x-slot:encabezado>
@@ -12,6 +12,5 @@
         <input class='button' type='submit' value='Crear reserva de habitación'/>
     </form><br/>
 
-    <a href='{{ route('room_bookings.index') }}'>Volver al listado</a>
 
-</x-zz.base>
+</x-zz.base2>
