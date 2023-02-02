@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\User;
 
 class BookingController extends Controller
 {
 
     public function index()
     {
-        $bookings = Booking::orderBy('codigo')->get();
-        return view('paginas/bookings/index', compact('bookings'));
+        return redirect(route( 'bookings'));
     }
 
     public function create()

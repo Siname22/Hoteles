@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
-
     public function client()
     {
         return $this->belongsTo(Client::class);
@@ -17,5 +16,15 @@ class Booking extends Model
     public function room_bookings()
     {
         return $this->hasMany(Room_booking::class);
+    }
+
+    /**
+     * @param $query
+     * @param $id
+     * @return mixed
+     */
+    public function scopeBookings($query, $id)
+    {
+        return $query->where('client_id', $id);
     }
 }

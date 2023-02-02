@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/inicio', function () {
-    $bookings = \App\Models\Booking::orderBy('codigo')->get();
-    return view('paginas/bookings/index', compact('bookings'));
+    $client = (array) DB::table('clients')->where('user_id', auth()->id())->first();
+    $bookings = DB::table('bookings')->where('client_id', $client["id"])->get();
+    return view('paginas/bookings/index', compact('bookings', 'client'));
 })->middleware(['auth', 'verified'])->name('bookings');
 
 Route::middleware('auth')->group(function () {
