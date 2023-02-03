@@ -43,6 +43,11 @@
             </tr>
         @endforeach
 
-    </table><br><br>
+    </table>
+    <br><br>
+
+    <form action="clientHome" method="get">
+        <input type="submit" value="Volver">
+    </form>
 
 </x-zz.base2>
