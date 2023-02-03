@@ -58,6 +58,6 @@
     </table>
 
     <br><br>
-    <button><a href='{{ route('roomAssignments.index') }}' id='no_subrayado'>Atrás</a></button>
+    <button><a href='{{ route('roomAssignments', $roomAssignment->id) }}' id='no_subrayado'>Atrás</a></button>
 
 </x-zz.base2>

@@ -43,7 +43,7 @@
     </table>
     <br><br>
 
-    <form action="clientHome" method="get">
+    <form action="bookings" method="get">
         <input type="submit" value="Volver">
     </form>
 

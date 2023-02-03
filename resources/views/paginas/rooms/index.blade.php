@@ -66,7 +66,7 @@
 
     <br>
 
-    <form action="inicio_cliente" method="get">
+    <form action="clientHome" method="get">
         <input type="submit" value="Volver">
     </form>
 
