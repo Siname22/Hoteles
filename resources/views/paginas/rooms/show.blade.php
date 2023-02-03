@@ -1,23 +1,37 @@
-<x-zz.base>
+<x-zz.base2>
 
     <x-slot:titulo>Editar Habitación</x-slot:titulo>
-    <x-slot:encabezado>Modifica la habitación</x-slot:encabezado>
+    <x-slot:encabezado>Detalles de la habitación</x-slot:encabezado>
 
-    <p>Código: {{ $room->codigo }}</p>
-    <p>Nombre: {{ $room->nombre }}</p>
-    <p>Tipo: {{ $room->tipo }}</p>
-    <p>Estado: {{ $room->estado }}</p>
-    <p>Número de camas: {{ $room->numero_camas }}</p>
-    <p>Precio base: {{ $room->precio_base }}</p>
-    <p>Máximo de ocupantes: {{ $room->max_ocupantes }}</p>
-    <p>Terraza: {{ $room->terraza ? "Sí" : "No" }}</p><br>
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Número de camas</th>
+            <th>Precio base</th>
+            <th>Máximo de ocupantes</th>
+            <th>Terraza</th>
+        </tr>
+        <tr>
+            <td>{{ $room->nombre }}</td>
+            <td>{{ $room->estado }}</td>
+            <td>{{ $room->numero_camas }}</td>
+            <td>{{ $room->precio_base }}</td>
+            <td>{{ $room->max_ocupantes }}</td>
+            <td>{{ $room->terraza }}</td>
+        </tr>
 
-    <form action = '{{ route('rooms.destroy', $room) }}' method = 'post'>
-        @method('delete')
-        <input type = 'submit' value = 'Eliminar Habitación'>
-    </form><br>
 
-    <a href = '{{ route('rooms.edit', $room) }}'>Editar Habitación</a>
-    <br><br><a href = '{{ route('rooms.index') }}'>Listado Habitaciones</a>
+    </table>
 
-</x-zz.base>
+    <br>
+    <form action='{{ route('roomAssignments.create', $room) }}' method='get'>
+
+        <input class='button' type='submit' value='Añadir a la reserva'/>
+    </form>
+    <br>
+
+
+    <a href = '{{ route('rooms.index') }}'> <button> Volver </button> </a>
+
+</x-zz.base2>

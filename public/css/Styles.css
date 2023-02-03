@@ -264,8 +264,38 @@ body {
     }
 }
 
+#tabla, #tabla tr, #tabla th, #tabla td {
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+}
+
+#tabla th {
+    background-color: blueviolet;
+    text-align: center;
+}
 
 
+#logo_left {
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-left: -20px;
+}
 
-
-
+#enlace_left {
+    width: 10%;
+    height: 10%;
+    float: left;
+    margin-left: -1500px;
+    margin-top: 50px;
+}
+#fila {
+    height: 30px;
+}
+#no_subrayado {
+    text-decoration: none;
+    color: black;
+    padding-top: 2px;
+}

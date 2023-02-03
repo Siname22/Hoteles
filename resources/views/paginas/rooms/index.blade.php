@@ -1,63 +1,73 @@
-<x-zz.base>
+<x-zz.base2>
 
     <x-slot:titulo>Habitaciones</x-slot:titulo>
     <x-slot:encabezado>Listado de habitaciones</x-slot:encabezado>
 
+    <form action="index.blade.php" method="get">
+            <label for='fecha_entrada'>Fecha de inicio: </label>
+            <input type='date' id='fecha_entrada' name='fecha_entrada' value='{{ $params['room_booking']->fecha_entrada ?? '' }}'>
+
+            <label for='fecha_salida'>Fecha de fin: </label>
+            <input type='date' id='fecha_salida' name='fecha_salida' value='{{ $params['room_booking']->fecha_salida ?? '' }}'>
+
+            <label for="num_camas">Numero de Camas: </label>
+            <input type="number" id="num_camas" name="num_camas" value="{{ $room->numero_camas ?? '' }}"/>
+
+            <label for="terraza">Terraza: </label>
+            <input type="checkbox" id="terraza" name="terraza">
+
+    </form>
+
+    <br>
     <table border="1">
         <tr>
-            <th>Codigo</th>
             <th>Nombre</th>
-            <th>Tipo</th>
             <th>Estado</th>
             <th>Numero de camas</th>
             <th>Precio base</th>
             <th>Máximo de ocupantes</th>
             <th>Terraza</th>
-            <th>Eliminar</th>
+            <th>Ver</th>
         </tr>
         @foreach ($rooms as $room)
             <tr>
+
                 <td>
-                    <a href='{{ route('rooms.show', $room) }}'>{{ $room->codigo }}</a>
+                    {{ $room->nombre }}
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room) }}'>{{ $room->nombre }} </a>
-                </td>
-                <td>
-                    <a href='{{ route('rooms.show', $room) }}'>{{ $room->tipo }} </a>
+                    {{ $room->estado }}
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room) }}'>{{ $room->estado }}  </a>
+                   {{ $room->numero_camas }}
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room ) }}'>{{ $room->numero_camas }} </a>
+                    {{ $room->precio_base }}
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room ) }}'>{{ $room->precio_base }} </a>
+                    {{ $room->max_ocupantes }}
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room ) }}'>{{ $room->max_ocupantes }} </a>
+                    {{ $room->terraza ? "Sí" : "No" }}
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room ) }}'>{{ $room->terraza ? "Sí" : "No" }} </a>
-                </td>
-
-                <td>
-                    <form action='{{ route('rooms.destroy', $room) }}' method='post'>
-                        @method('delete')
-                        @csrf
-
-                        <button type='submit'>Eliminar</button>
-                    </form>
+                    <a href='{{ route('rooms.show', $room ) }}'><button>Ver</button></a>
                 </td>
             </tr>
         @endforeach
 
     </table><br><br>
-</x-zz.base>
+
+    <br>
+
+    <form action="clientHome" method="get">
+        <input type="submit" value="Volver">
+    </form>
+
+</x-zz.base2>

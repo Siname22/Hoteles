@@ -1,9 +1,11 @@
-<x-zz.base>
+<x-zz.base2>
 
     <x-slot:titulo>Reservas</x-slot:titulo>
     <x-slot:encabezado>Listado de reservas</x-slot:encabezado>
 
     <table border="1">
+
+
         <tr>
             <th>Precio</th>
             <th>Observación</th>
@@ -13,19 +15,25 @@
         @foreach ($bookings as $booking)
             <tr>
                 <td>
-                    <a href='{{ route('bookings.show', $booking) }}'>{{ $booking->precio }} </a>
+                    {{ $booking->precio }}
                 </td>
 
                 <td>
-                    <a href='{{ route('bookings.show', $booking) }}'>{{ $booking->observacion }}  </a>
+                    {{ $booking->observacion }}
                 </td>
 
                 <td>
-                    <a href='{{ route('bookings.show', $booking ) }}'>{{ $booking->client->nombre }} </a>
+                    {{ $client["nombre"] }}
                 </td>
 
                 <td>
-                    <form action='{{ route('bookings.destroy', $booking) }}' method='post'>
+                    <form action='{{ route('roomAssignments', $booking->id) }}'>
+                        <input type='submit' value='Ver asignaciones'/>
+                    </form>
+                </td>
+
+                <td>
+                    <form action='{{ route('bookings.destroy', $booking->id) }}' method='post'>
                         @method('delete')
                         @csrf
 
@@ -35,6 +43,11 @@
             </tr>
         @endforeach
 
-    </table><br><br>
+    </table>
+    <br><br>
 
-</x-zz.base>
+    <form action="clientHome" method="get">
+        <input type="submit" value="Volver">
+    </form>
+
+</x-zz.base2>

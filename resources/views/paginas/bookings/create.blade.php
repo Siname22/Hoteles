@@ -1,7 +1,7 @@
 <x-zz.base>
 
     <x-slot:titulo>Crear Reserva</x-slot:titulo>
-    <x-slot:encabezado>Crea una reserva</x-slot:encabezado>
+    <x-slot:encabezado>Crear Reserva</x-slot:encabezado>
 
     <form action='{{ route('bookings.store') }}' method='post'>
         @method('post')
