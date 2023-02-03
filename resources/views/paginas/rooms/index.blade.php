@@ -16,6 +16,8 @@
             <label for="terraza">Terraza: </label>
             <input type="checkbox" id="terraza" name="terraza">
 
+            <input type="submit" value="Filtrar">
+
     </form>
 
     <br>
