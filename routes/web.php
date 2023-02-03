@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomAssignmentController;
+use App\Http\Controllers\RoomController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,29 +23,38 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Ruta de inicio de clientes
 Route::get('/inicio', function () {
-    $bookings = \App\Models\Booking::orderBy('codigo')->get();
-    return view('paginas/bookings/index', compact('bookings'));
+    $client = (array) DB::table('clients')->where('user_id', auth()->id())->first();
+
+    $bookings = DB::table('bookings')->where('client_id', $client["id"])->get();
+
+    return view('paginas/bookings/index', compact('bookings', 'client'));
 })->middleware(['auth', 'verified'])->name('bookings');
 
-Route::middleware('auth')->group(function () {
+//Ruta de RoomAssignment
+Route::get('/roomAssignments{bookingId}', function ($bookingId) {
+    $roomAssignments = DB::table('room_assignments')->join('rooms', 'room_id', 'LIKE', 'rooms.id')
+        ->select('room_assignments.*', 'rooms.nombre')
+        ->where('booking_id', $bookingId)->get();
+
+    return view('paginas/roomAssignments/index', compact('roomAssignments'));
+})->middleware(['auth', 'verified'])->name('roomAssignments');
+
+//Ruta de vuelta a clientHome
+Route::middleware('auth')->group(callback: function () {
     Route::get('/', function () {
-        return view('paginas/inicio_cliente/inicio_cliente');
-    });
-    Route::get('/login', function () {
-        return view('paginas/inicio/login');
-    });
-    Route::get('/sign_up', function () {
-        return view('paginas/inicio/sign_up');
-    });
-    Route::get('/inicio_cliente', function () {
-        return view('paginas/inicio_cliente/inicio_cliente');
+        return view('paginas/clientHome/clientHome');
     });
 
-    Route::resource('room_bookings', \App\Http\Controllers\RoomBookingController::class);
-    Route::resource('bookings', \App\Http\Controllers\BookingController::class);
-    Route::resource('clients', \App\Http\Controllers\ClientController::class);
-    Route::resource('rooms', \App\Http\Controllers\RoomController::class);
+    Route::get('/clientHome', function () {
+        return view('paginas/clientHome/clientHome');
+    });
+
+    Route::resource('roomAssignments', RoomAssignmentController::class);
+    Route::resource('bookings', BookingController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('rooms', RoomController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

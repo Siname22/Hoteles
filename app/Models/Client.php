@@ -8,9 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
-
-    public function get_bookings()
+    public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->get();
+    }
+
+    /**
+     * @param $query
+     * @param $id
+     * @return mixed
+     */
+    public function scopeClient($query, $id)
+    {
+        return $query->where('user_id', $id);
     }
 }
