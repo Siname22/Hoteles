@@ -44,7 +44,8 @@ class RoomAssignmentController extends Controller
         $roomAssignment->fecha_salida = $request->fecha_salida;
         $roomAssignment->save();
 
-        return redirect()->route('roomAssignments.index');
+        $bookingId = $roomAssignment->booking_id;
+        return redirect()->route('roomAssignments', compact('bookingId'));
     }
 
 
@@ -81,14 +82,15 @@ class RoomAssignmentController extends Controller
         $roomAssignment->fecha_entrada = $request->fecha_entrada;
         $roomAssignment->fecha_salida = $request->fecha_salida;
         $roomAssignment->save();
-
-        return redirect()->route('roomAssignments.index');
+        $bookingId =  $roomAssignment->booking_id;
+        return redirect()->route('roomAssignments', compact('bookingId'));
     }
 
 
     public function destroy(RoomAssignment $roomAssignment)
     {
         $roomAssignment->delete();
-        return redirect()->route('roomAssignments.index');
+        $bookingId =  $roomAssignment->booking_id;
+        return redirect()->route('roomAssignments', compact('bookingId'));
     }
 }
