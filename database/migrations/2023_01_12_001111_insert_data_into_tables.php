@@ -71,13 +71,13 @@ return new class extends Migration
             'observacion' => 'reserva complicada',
             'client_id' => $cliente2
         ]);
-        DB::table('room_bookings')->insertGetId([
+        DB::table('room_assignments')->insertGetId([
             'room_id' => $room1,
             'booking_id' => $reserva1,
             'fecha_entrada' => '2023-01-22 13:00:00',
             'fecha_salida' => '2023-01-25 12:00:00'
         ]);
-        DB::table('room_bookings')->insertGetId([
+        DB::table('room_assignments')->insertGetId([
             'room_id' => $room2,
             'booking_id' => $reserva2,
             'fecha_entrada' => '2023-02-13 13:00:00',

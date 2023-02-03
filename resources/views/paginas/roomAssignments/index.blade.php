@@ -1,9 +1,10 @@
 <x-zz.base2>
 
-<x-slot:titulo>Mis Reservas</x-slot:titulo>
-<x-slot:encabezado>MIS RESERVAS</x-slot:encabezado>
+    <x-slot:titulo>Mis Reservas</x-slot:titulo>
+    <x-slot:encabezado>MIS RESERVAS</x-slot:encabezado>
 
-    <br><table id='tabla'>
+    <br>
+    <table id='tabla'>
         <tr>
             <th>Habitación</th>
             <th>Entrada</th>
@@ -11,14 +12,14 @@
             <th colspan='2'>Acciones</th>
         </tr>
 
-        @foreach ($room_bookings as $room_booking)
+        @foreach ($roomAssignments as $roomAssignment)
 
             <tr>
-                <td>{{ $room_booking->nombre }}</td>
-                <td>{{ $room_booking->fecha_entrada }}</td>
-                <td>{{ $room_booking->fecha_salida }}</td>
+                <td>{{ $roomAssignment->nombre }}</td>
+                <td>{{ $roomAssignment->fecha_entrada }}</td>
+                <td>{{ $roomAssignment->fecha_salida }}</td>
                 <td>
-                    <form action='{{ route('room_bookings.show', $room_booking->id) }}' method='post'>
+                    <form action='{{ route('roomAssignments.show', $roomAssignment->id) }}' method='post'>
 
                         @method('get')
                         @csrf
@@ -27,7 +28,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action='{{ route('room_bookings.destroy', $room_booking->id) }}' method='post'>
+                    <form action='{{ route('roomAssignments.destroy', $roomAssignment->id) }}' method='post'>
 
                         @method('delete')
                         @csrf
@@ -39,9 +40,10 @@
 
         @endforeach
 
-    </table><br><br>
+    </table>
+    <br><br>
 
-    <form action="inicio_cliente" method="get">
+    <form action="clientHome" method="get">
         <input type="submit" value="Volver">
     </form>
 

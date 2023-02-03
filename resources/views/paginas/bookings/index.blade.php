@@ -27,7 +27,7 @@
                 </td>
 
                 <td>
-                    <form action='{{ route('room_bookings', $booking->id) }}'>
+                    <form action='{{ route('roomAssignments', $booking->id) }}'>
                         <input type='submit' value='Ver asignaciones'/>
                     </form>
                 </td>
