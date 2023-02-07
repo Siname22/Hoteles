@@ -46,8 +46,8 @@
     <form action="bookings" method="get">
         <input type="submit" value="Volver">
     </form>
-
-    <button>Añadir</button>
-    <br>
+    <form action="bookings/edit" method="get">
+        <input type="submit" value="Añadir">
+    </form>
     <button>Finalizar</button>
 </x-zz.base2>
