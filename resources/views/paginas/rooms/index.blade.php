@@ -21,10 +21,9 @@
     </form>
 
     <br>
-    <table border="1">
+    <table id="tabla">
         <tr>
             <th>Nombre</th>
-            <th>Estado</th>
             <th>Numero de camas</th>
             <th>Precio base</th>
             <th>Máximo de ocupantes</th>
@@ -36,10 +35,6 @@
 
                 <td>
                     {{ $room->nombre }}
-                </td>
-
-                <td>
-                    {{ $room->estado }}
                 </td>
 
                 <td>

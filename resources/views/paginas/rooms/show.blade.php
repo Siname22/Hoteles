@@ -3,7 +3,7 @@
     <x-slot:titulo>{{$room->nombre}}</x-slot:titulo>
     <x-slot:encabezado>{{$room->nombre}}</x-slot:encabezado>
 
-    <table border="1">
+    <table id="tabla">
         <tr>
             <th>Número de camas</th>
             <th>Precio base</th>
