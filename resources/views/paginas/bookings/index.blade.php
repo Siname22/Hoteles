@@ -1,29 +1,24 @@
 <x-zz.base2>
 
-    <x-slot:titulo>Reservas</x-slot:titulo>
-    <x-slot:encabezado>Listado de reservas</x-slot:encabezado>
+    <x-slot:titulo>Mis Reservas</x-slot:titulo>
+    <x-slot:encabezado>Mis reservas</x-slot:encabezado>
 
     <table border="1">
 
 
         <tr>
+            <th>Nº </th>
             <th>Precio</th>
-            <th>Observación</th>
-            <th>Cliente</th>
+            <th></th>
             <th>Eliminar</th>
         </tr>
         @foreach ($bookings as $booking)
             <tr>
                 <td>
+                    {{$booking->id }}
+                </td>
+                <td>
                     {{ $booking->precio }}
-                </td>
-
-                <td>
-                    {{ $booking->observacion }}
-                </td>
-
-                <td>
-                    {{ $client["nombre"] }}
                 </td>
 
                 <td>
