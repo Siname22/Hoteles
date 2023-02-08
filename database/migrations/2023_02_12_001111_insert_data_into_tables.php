@@ -9,9 +9,10 @@ return new class extends Migration
 
     public function up()
     {
+        //HABITACIONES
         $room1 = DB::table('rooms')->insertGetId([
             'codigo' => '0001',
-            'nombre' => 'La buardilla del hotel',
+            'nombre' => 'La Buuardilla del hotel',
             'tipo' => 'pr',
             'estado' => 'disp',
             'numero_camas' => 2,
@@ -29,22 +30,25 @@ return new class extends Migration
             'max_ocupantes' => 5,
             'terraza' => '0'
         ]);
-        $password1 = 'cliente1';
+
+        //USUARIOS CLIENTES
+        $passwordUser1 = 'cliente1';
         $usuario1 = DB::table('users')->insertGetId([
             'name' => 'cliente1',
             'email' => 'cliente1@mail.laravel',
             'email_verified_at' => null,
-            'password' => Hash::make($password1),
+            'password' => Hash::make($passwordUser1),
             'remember_token' => null
         ]);
-        $password2 = 'cliente2';
+        $passwordUser2 = 'cliente2';
         $usuario2 = DB::table('users')->insertGetId([
             'name' => 'cliente2',
             'email' => 'cliente2@mail.laravel',
             'email_verified_at' => null,
-            'password' => Hash::make($password2),
+            'password' => Hash::make($passwordUser2),
             'remember_token' => null
         ]);
+        //CLIENTES
         $cliente1 = DB::table('clients')->insertGetId([
             'user_id' => $usuario1,
             'nombre' => 'Pepito',
@@ -59,6 +63,26 @@ return new class extends Migration
             'dni' => '987654321',
             'telefono' => '5497'
         ]);
+        //USUARIOS EMPLEADOS
+        $passwordEmployee1 = 'empleado1';
+        $employee1 = DB::table('users')->insertGetId([
+            'name' => 'empleado1',
+            'email' => 'empleado1@mail.laravel',
+            'email_verified_at' => null,
+            'password' => Hash::make($passwordEmployee1),
+            'remember_token' => null
+        ]);
+        //EMPLEADOS
+        $empleado1= DB::table('employees')->insertGetId([
+            'user_id' => $employee1,
+            'nombre'=> 'Javier',
+            'apellidos' => 'Arroyo Molinos',
+            'telefono' => '609106158',
+            'rol' => 'empleado'
+        ]);
+
+
+        //RESERVAS
         $reserva1 = DB::table('bookings')->insertGetId([
             'codigo' => 'aaaa',
             'precio' => 500.0,
@@ -71,6 +95,8 @@ return new class extends Migration
             'observacion' => 'reserva complicada',
             'client_id' => $cliente2
         ]);
+
+        //ASIGNACIONES
         DB::table('room_assignments')->insertGetId([
             'room_id' => $room1,
             'booking_id' => $reserva1,
