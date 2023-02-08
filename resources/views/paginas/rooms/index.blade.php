@@ -16,7 +16,7 @@
             <label for="terraza">Terraza: </label>
             <input type="checkbox" id="terraza" name="terraza">
 
-            <input type="submit" value="Filtrar">
+            <input type="submit" value="Filtrar" class='button'>
 
     </form>
 
@@ -54,7 +54,7 @@
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room ) }}'><button>Ver</button></a>
+                    <a href='{{ route('rooms.show', $room ) }}'><button class='button'>Ver</button></a>
                 </td>
             </tr>
         @endforeach
@@ -64,7 +64,7 @@
     <br>
 
     <form action="clientHome" method="get">
-        <input type="submit" value="Volver">
+        <input type="submit" value="Volver" class='button'>
     </form>
 
 </x-zz.base2>

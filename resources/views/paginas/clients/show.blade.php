@@ -11,10 +11,10 @@
 
     <form action = '{{ route('clients.destroy', $client) }}' method = 'post'>
         @method('delete')
-        <input type = 'submit' value = 'Eliminar Cliente'>
+        <input type = 'submit' value = 'Eliminar Cliente' class='button'>
     </form>
 
-    <a href = '{{ route('clients.edit', $client) }}'>Editar Cliente</a>
-    <br><br><a href = '{{ route('clients.index') }}'>Listado Clientes</a>
+    <a href = '{{ route('clients.edit', $client) }}' class='button'>Editar Cliente</a>
+    <br><br><a href = '{{ route('clients.index') }}' class='button'>Listado Clientes</a>
 
 </x-zz.base>

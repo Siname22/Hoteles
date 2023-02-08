@@ -8,12 +8,12 @@
 
         <x-clients.campos :client='$client' />
 
-        <br><br><br><input type='submit' value='Editar Cliente'/>
+        <br><br><br><input type='submit' value='Editar Cliente' class='button'/>
     </form>
 
     <form action = '{{ route('clients.destroy', $client) }}' method = 'post'>
         @method('delete')
-        <input type = 'submit' value = 'Eliminar cliente'>
+        <input type = 'submit' value = 'Eliminar cliente' class='button'>
     </form><br>
 
     <a href='{{ route('clients.index') }}'>Volver al listado</a>

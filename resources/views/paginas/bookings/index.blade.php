@@ -23,7 +23,7 @@
 
                 <td>
                     <form action='{{ route('roomAssignments', $booking->id) }}'>
-                        <button type='submit'>Ver</button>
+                        <button type='submit' class='button'>Ver</button>
                     </form>
                 </td>
 
@@ -32,7 +32,7 @@
                         @method('delete')
                         @csrf
 
-                        <button type='submit'>Eliminar</button>
+                        <button type='submit' class='button'>Eliminar</button>
                     </form>
                 </td>
             </tr>
@@ -42,7 +42,7 @@
     <br><br>
 
     <form action="clientHome" method="get">
-        <input type="submit" value="Volver">
+        <input type="submit" value="Volver" class='button'>
     </form>
 
 </x-zz.base2>

@@ -8,14 +8,14 @@
 
         <x-bookings.campos :booking='$booking' :clients='$clients' />
 
-        <br><br><br><input type='submit' value='Editar Reserva'/>
+        <br><br><br><input type='submit' value='Editar Reserva' class='button'/>
     </form>
 
     <form action = '{{ route('bookings.destroy', $booking) }}' method = 'post'>
         @method('delete')
-        <input type = 'submit' value = 'Eliminar Reserva'>
+        <input type = 'submit' value = 'Eliminar Reserva' class='button'>
     </form><br>
 
-    <a href='{{ route('bookings.index') }}'>Volver al listado</a>
+    <a href='{{ route('bookings.index') }}' class='button'>Volver al listado</a>
 
 </x-zz.base>

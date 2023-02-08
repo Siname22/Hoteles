@@ -9,7 +9,7 @@
 
     <form action = '{{ route('bookings.destroy', $booking) }}' method = 'post'>
         @method('delete')
-        <input type = 'submit' value = 'Eliminar Reserva'>
+        <input type = 'submit' value = 'Eliminar Reserva' class='button'>
     </form>
 
     <a href = '{{ route('bookings.edit', $booking) }}'>Editar Reserva</a>
