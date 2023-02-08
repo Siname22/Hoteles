@@ -1,7 +1,7 @@
 <x-zz.base2>
 
-    <x-slot:titulo>Mis Reservas</x-slot:titulo>
-    <x-slot:encabezado>Mis reservas</x-slot:encabezado>
+    <x-slot:titulo>M2H - Mis Reservas</x-slot:titulo>
+    <x-slot:encabezado>MIS RESERVAS</x-slot:encabezado>
 
     <table id="tabla">
 
@@ -23,7 +23,7 @@
 
                 <td>
                     <form action='{{ route('roomAssignments', $booking->id) }}'>
-                        <button type='submit'>Ver</button>
+                        <button type='submit'>Revisar</button>
                     </form>
                 </td>
 

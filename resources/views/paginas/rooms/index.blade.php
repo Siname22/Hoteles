@@ -1,22 +1,22 @@
 <x-zz.base2>
 
-    <x-slot:titulo>Habitaciones</x-slot:titulo>
-    <x-slot:encabezado>Listado de habitaciones</x-slot:encabezado>
+    <x-slot:titulo>M2H - Habitaciones</x-slot:titulo>
+    <x-slot:encabezado>LISTADO HABITACIONES</x-slot:encabezado>
 
     <form action="index.blade.php" method="get">
-            <label for='fecha_entrada'>Fecha de inicio: </label>
+            <label for='fecha_entrada'>Fecha de Entrada </label>
             <input type='date' id='fecha_entrada' name='fecha_entrada' value='{{ $params['room_booking']->fecha_entrada ?? '' }}'>
 
-            <label for='fecha_salida'>Fecha de fin: </label>
+            <label for='fecha_salida'>Fecha de Salida </label>
             <input type='date' id='fecha_salida' name='fecha_salida' value='{{ $params['room_booking']->fecha_salida ?? '' }}'>
 
-            <label for="num_camas">Numero de Camas: </label>
+            <label for="num_camas">Número de Camas </label>
             <input type="number" id="num_camas" name="num_camas" value="{{ $room->numero_camas ?? '' }}"/>
 
-            <label for="terraza">Terraza: </label>
+            <label for="terraza">Terraza </label>
             <input type="checkbox" id="terraza" name="terraza">
 
-            <input type="submit" value="Filtrar">
+            <input type="submit" value="Filtrar Búsqueda">
 
     </form>
 
@@ -24,11 +24,11 @@
     <table id="tabla">
         <tr>
             <th>Nombre</th>
-            <th>Numero de camas</th>
-            <th>Precio base</th>
-            <th>Máximo de ocupantes</th>
+            <th>Camas</th>
+            <th>Precio</th>
+            <th>Ocupantes</th>
             <th>Terraza</th>
-            <th>Ver</th>
+            <th>Detalles</th>
         </tr>
         @foreach ($rooms as $room)
             <tr>
