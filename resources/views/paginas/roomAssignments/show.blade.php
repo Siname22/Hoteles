@@ -20,7 +20,6 @@
         <th>Fecha de entrada</th>
         <th>Fecha de salida</th>
         <th>Eliminar</th>
-        <th>Editar</th>
 
         <tr id='fila'>
             <td>{{ $roomAssignment->room->nombre}}</td>
@@ -49,10 +48,6 @@
                 </form>
             </td>
 
-            <td>
-                <button><a href='{{ route('roomAssignments.edit', $roomAssignment) }}' id='no_subrayado'>Editar
-                        <br/>reserva</a></button>
-            </td>
         </tr>
 
     </table>
