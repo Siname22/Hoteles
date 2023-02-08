@@ -1,20 +1,16 @@
 <x-zz.base2>
 
-    <x-slot:titulo>Editar Habitación</x-slot:titulo>
-    <x-slot:encabezado>Detalles de la habitación</x-slot:encabezado>
+    <x-slot:titulo>{{$room->nombre}}</x-slot:titulo>
+    <x-slot:encabezado>{{$room->nombre}}</x-slot:encabezado>
 
-    <table border="1">
+    <table id="tabla">
         <tr>
-            <th>Nombre</th>
-            <th>Estado</th>
             <th>Número de camas</th>
             <th>Precio base</th>
             <th>Máximo de ocupantes</th>
             <th>Terraza</th>
         </tr>
         <tr>
-            <td>{{ $room->nombre }}</td>
-            <td>{{ $room->estado }}</td>
             <td>{{ $room->numero_camas }}</td>
             <td>{{ $room->precio_base }}</td>
             <td>{{ $room->max_ocupantes }}</td>

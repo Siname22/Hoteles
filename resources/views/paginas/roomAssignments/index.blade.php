@@ -1,7 +1,7 @@
 <x-zz.base2>
 
-    <x-slot:titulo>Mis Reservas</x-slot:titulo>
-    <x-slot:encabezado>MIS RESERVAS</x-slot:encabezado>
+    <x-slot:titulo>Edición de reserva</x-slot:titulo>
+    <x-slot:encabezado>Edición de reserva</x-slot:encabezado>
 
     <br>
     <table id='tabla'>
@@ -46,5 +46,8 @@
     <form action="bookings" method="get">
         <input type="submit" value="Volver">
     </form>
-
+    <form action="bookings/edit" method="get">
+        <input type="submit" value="Añadir">
+    </form>
+    <button>Finalizar</button>
 </x-zz.base2>

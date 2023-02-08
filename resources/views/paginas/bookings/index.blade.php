@@ -1,34 +1,29 @@
 <x-zz.base2>
 
-    <x-slot:titulo>Reservas</x-slot:titulo>
-    <x-slot:encabezado>Listado de reservas</x-slot:encabezado>
+    <x-slot:titulo>Mis Reservas</x-slot:titulo>
+    <x-slot:encabezado>Mis reservas</x-slot:encabezado>
 
-    <table border="1">
+    <table id="tabla">
 
 
         <tr>
+            <th>Nº </th>
             <th>Precio</th>
-            <th>Observación</th>
-            <th>Cliente</th>
+            <th>Habitaciones</th>
             <th>Eliminar</th>
         </tr>
         @foreach ($bookings as $booking)
             <tr>
                 <td>
+                    {{$booking->id }}
+                </td>
+                <td>
                     {{ $booking->precio }}
                 </td>
 
                 <td>
-                    {{ $booking->observacion }}
-                </td>
-
-                <td>
-                    {{ $client["nombre"] }}
-                </td>
-
-                <td>
                     <form action='{{ route('roomAssignments', $booking->id) }}'>
-                        <input type='submit' value='Ver asignaciones'/>
+                        <button type='submit'>Ver</button>
                     </form>
                 </td>
 
