@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomAssignmentController;
 use App\Http\Controllers\RoomController;
 use App\Models\Room;
+use App\Models\RoomAssignment;
 use Carbon\Carbon;
 use Illuminate\HTTP\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,22 +60,19 @@ Route::get('/rooms/available{params}', function($params) {
         ->where('rooms.terraza','=',DB::raw($terraza))
         ->where('rooms.estado','LIKE', DB::raw('\'disp\''))->get();
 
-    $roomsFuera = DB::table('room_assignments')
-        ->select('*')
-        ->where(DB::raw(0), '>', DB::raw('DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".')'))
-        ->where(DB::raw(0), '<', DB::raw('DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".')'))
+    $roomsFuera = RoomAssignment::select('*')
+        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(`room_assignments`.`fecha_entrada`, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(`room_assignments`.`fecha_salida`, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
         ->get();
 
-    $roomsEntradaDentro = DB::table('room_assignments')
-        ->select('*')
-        ->where(DB::raw(0), '>=', DB::raw('DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".')'))
-        ->where(DB::raw(0), '<', DB::raw('DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".')'))
+    $roomsEntradaDentro = RoomAssignment::select('*')
+        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+        ->where(DB::raw(0), '>', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
         ->get();
 
-    $roomsSalidaDentro = DB::table('room_assignments')
-        ->select('*')
-        ->where(DB::raw(0), '>', DB::raw('DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaSalida)->toDateString()."'".')'))
-        ->where(DB::raw(0), '<=', DB::raw('DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".')'))
+    $roomsSalidaDentro = RoomAssignment::select('*')
+        ->where(DB::raw(0), '<', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
+        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
         ->get();
 
     $availableRooms = [];

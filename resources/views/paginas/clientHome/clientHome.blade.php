@@ -21,7 +21,7 @@
         <form action="bookings">
             <input type="submit" value="VER MIS RESERVAS" id='ver_reserva'>
         </form>
-        <form action="rooms">
+        <form action="{{ route('rooms.filter') }}">
             <input type="submit" value="HACER UNA RESERVA" id='hacer_reserva'>
         </form>
     </div>
