@@ -26,14 +26,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Rutas de las vistas de los empleados
+//Ruta de inicio
+Route::get('/inicio', function (){
+    $employee = (array) DB::table('employees')->where('user_id',auth()->id()->first());
+    return view('paginas/empleados/empleadoHome', compact('employee'));
+});
+//Rutas de las vistas del cliente
 //Ruta de inicio de clientes
 Route::get('/inicio', function () {
     $client = (array) DB::table('clients')->where('user_id', auth()->id())->first();
 
+
     $bookings = DB::table('bookings')->where('client_id', $client["id"])->get();
 
-    return view('paginas/bookings/index', compact('bookings', 'client'));
+    return view('paginas/clientes/bookings/index', compact('bookings', 'client'));
 })->middleware(['auth', 'verified'])->name('bookings');
 
 //Ruta de RoomAssignment
@@ -42,7 +49,7 @@ Route::get('/roomAssignments{bookingId}', function ($bookingId) {
         ->select('room_assignments.*', 'rooms.nombre')
         ->where('booking_id', $bookingId)->get();
 
-    return view('paginas/roomAssignments/index', compact('roomAssignments'));
+    return view('paginas/clientes/roomAssignments/index', compact('roomAssignments'));
 })->middleware(['auth', 'verified'])->name('roomAssignments');
 
 
@@ -125,11 +132,11 @@ Route::get('/rooms/filter', function() {
 //Ruta de vuelta a clientHome
 Route::middleware('auth')->group(callback: function () {
     Route::get('/', function () {
-        return view('paginas/clientHome/clientHome');
+        return view('paginas/clientes/clientHome/clientHome');
     });
 
     Route::get('/clientHome', function () {
-        return view('paginas/clientHome/clientHome');
+        return view('paginas/clientes/clientHome/clientHome');
     });
 
     Route::resource('roomAssignments', RoomAssignmentController::class);
