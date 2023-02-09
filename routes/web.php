@@ -5,6 +5,9 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomAssignmentController;
 use App\Http\Controllers\RoomController;
+use App\Models\Room;
+use Carbon\Carbon;
+use Illuminate\HTTP\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +43,86 @@ Route::get('/roomAssignments{bookingId}', function ($bookingId) {
 
     return view('paginas/roomAssignments/index', compact('roomAssignments'));
 })->middleware(['auth', 'verified'])->name('roomAssignments');
+
+
+Route::get('/rooms/available{params}', function($params) {
+
+    $arrParams = explode(', ', $params);
+
+    $fechaEntrada   =   $arrParams[0];
+    $fechaSalida    =   $arrParams[1];
+    $numeroCamas    =   $arrParams[2];
+    $terraza        =   $arrParams[3];
+
+    $roomsListadas = Room::select('*')
+        ->where('rooms.numero_camas','>=',DB::raw($numeroCamas))
+        ->where('rooms.terraza','=',DB::raw($terraza))
+        ->where('rooms.estado','LIKE', DB::raw('\'disp\''))->get();
+
+    $roomsFuera = DB::table('room_assignments')
+        ->select('*')
+        ->where(DB::raw(0), '>', DB::raw('DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".')'))
+        ->where(DB::raw(0), '<', DB::raw('DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".')'))
+        ->get();
+
+    $roomsEntradaDentro = DB::table('room_assignments')
+        ->select('*')
+        ->where(DB::raw(0), '>=', DB::raw('DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".')'))
+        ->where(DB::raw(0), '<', DB::raw('DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".')'))
+        ->get();
+
+    $roomsSalidaDentro = DB::table('room_assignments')
+        ->select('*')
+        ->where(DB::raw(0), '>', DB::raw('DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaSalida)->toDateString()."'".')'))
+        ->where(DB::raw(0), '<=', DB::raw('DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".')'))
+        ->get();
+
+    $availableRooms = [];
+
+    foreach ($roomsListadas as $roomListada) {
+
+        $ocupada = false;
+
+        foreach ($roomsFuera as $roomFuera) {
+
+            if ($roomListada->id == $roomFuera->room_id) {
+                $ocupada = true;
+            }
+
+        }
+
+        foreach ($roomsEntradaDentro as $roomEntradaDentro) {
+
+            if ($roomListada->id == $roomEntradaDentro->room_id) {
+                $ocupada = true;
+            }
+
+        }
+
+        foreach ($roomsSalidaDentro as $roomSalidaDentro) {
+
+            if ($roomListada->id == $roomSalidaDentro->room_id) {
+                $ocupada = true;
+            }
+
+        }
+
+        if (!$ocupada) {
+            $availableRooms[] = $roomListada;
+        }
+
+    }
+
+    return view('paginas/rooms/index', compact('availableRooms'));
+})->middleware(['auth', 'verified'])->name('rooms.available_rooms');
+
+Route::get('/recibir/params', [
+    RoomController::class, 'receive_params'
+])->middleware(['auth', 'verified'])->name('rooms.receive_params');
+
+Route::get('/rooms/filter', function() {
+    return view('paginas/rooms/filter');
+})->middleware(['auth', 'verified'])->name('rooms.filter');
 
 //Ruta de vuelta a clientHome
 Route::middleware('auth')->group(callback: function () {

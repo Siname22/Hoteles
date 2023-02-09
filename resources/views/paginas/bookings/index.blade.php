@@ -3,13 +3,13 @@
     <x-slot:titulo>Mis Reservas</x-slot:titulo>
     <x-slot:encabezado>Mis reservas</x-slot:encabezado>
 
-    <table border="1">
+    <table id="tabla">
 
 
         <tr>
             <th>Nº </th>
             <th>Precio</th>
-            <th></th>
+            <th>Habitaciones</th>
             <th>Eliminar</th>
         </tr>
         @foreach ($bookings as $booking)
@@ -23,7 +23,7 @@
 
                 <td>
                     <form action='{{ route('roomAssignments', $booking->id) }}'>
-                        <input type='submit' value='Ver asignaciones'/>
+                        <button type='submit'>Ver</button>
                     </form>
                 </td>
 

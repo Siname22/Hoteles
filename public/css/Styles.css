@@ -269,11 +269,13 @@ body {
     border-collapse: collapse;
     padding: 5px;
     text-align: center;
+    background-color: #f7f7f7;
 }
 
 #tabla th {
     background-color: blueviolet;
     text-align: center;
+    color: white;
 }
 
 
