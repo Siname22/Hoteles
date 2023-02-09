@@ -12,12 +12,6 @@
             <th>Terraza</th>
             <th>Ver</th>
         </tr>
-        @if(isset($roomsFuera))
-            @foreach($roomsFuera as $roomFuera)
-                <p>{{ $roomFuera->room_id }}</p>
-            @endforeach
-        @endif
-        @if(isset($availableRooms))
         @foreach ($availableRooms as $room)
             <tr>
 
@@ -46,7 +40,7 @@
                 </td>
             </tr>
         @endforeach
-        @endif
+
     </table><br><br>
 
     <br>
