@@ -4,14 +4,14 @@
 
 <html lang='es'>
     <head>
-        <title>Presentacion cliente</title>
+        <title>M2H Hoteles - Inicio</title>
         <link rel='stylesheet' href='\css\Styles.css'>
     </head>
 <body>
     <div id='div_logo'>
         <a id='div_logo'>
             </form>
-            <img src="/img/logofinal.png" id='logo' alt='logo M2H' title='M2H logo'>
+            <img src="/img/logofinal.png" id='logo'>
         </a>
     </div>
     <br/>

@@ -1,13 +1,13 @@
 <x-zz.base2>
 
-    <x-slot:titulo>{{$room->nombre}}</x-slot:titulo>
+    <x-slot:titulo>M2H - Detalles Habitación</x-slot:titulo>
     <x-slot:encabezado>{{$room->nombre}}</x-slot:encabezado>
 
     <table id="tabla">
         <tr>
-            <th>Número de camas</th>
-            <th>Precio base</th>
-            <th>Máximo de ocupantes</th>
+            <th>Camas</th>
+            <th>Precio</th>
+            <th>Ocupantes</th>
             <th>Terraza</th>
         </tr>
         <tr>
@@ -23,7 +23,7 @@
     <br>
     <form action='{{ route('roomAssignments.create', $room) }}' method='get'>
 
-        <input class='button' type='submit' value='Añadir a la reserva'/>
+        <input class='button' type='submit' value='Añadir Habitación'/>
     </form>
     <br>
 
