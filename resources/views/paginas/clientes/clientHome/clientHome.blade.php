@@ -4,14 +4,14 @@
 
 <html lang='es'>
     <head>
-        <title>Presentacion cliente</title>
+        <title>M2H Hoteles - Inicio</title>
         <link rel='stylesheet' href='\css\Styles.css'>
     </head>
 <body>
     <div id='div_logo'>
         <a id='div_logo'>
             </form>
-            <img src="/img/logofinal.png" id='logo' alt='logo M2H' title='M2H logo'>
+            <img src="/img/logofinal.png" id='logo'>
         </a>
     </div>
     <br/>
@@ -21,7 +21,7 @@
         <form action="bookings">
             <input type="submit" value="VER MIS RESERVAS" id='ver_reserva'>
         </form>
-        <form action="rooms">
+        <form action="{{ route('rooms.filter') }}">
             <input type="submit" value="HACER UNA RESERVA" id='hacer_reserva'>
         </form>
     </div>

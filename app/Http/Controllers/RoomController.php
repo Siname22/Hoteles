@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class RoomController extends Controller
 {
@@ -84,5 +88,29 @@ class RoomController extends Controller
     {
         $room->delete();
         return redirect()->route('rooms.index');
+    }
+
+    public function receive_params(Request $request)
+    {
+        $this->validate($request, [
+            'fecha_entrada' =>  'required',
+            'fecha_salida'  =>  'required',
+            'numero_camas'  =>  'required',
+            'terraza'       =>  ''
+        ]);
+
+        $fechaEntrada   =   $request->fecha_entrada;
+        $fechaSalida    =   $request->fecha_salida;
+        $numeroCamas    =   $request->numero_camas;
+        if (isset($request->terraza)) {
+            $terraza = 1;
+        } else {
+            $terraza = 0;
+        }
+
+        $preParams = [$fechaEntrada, $fechaSalida, $numeroCamas, $terraza];
+        $params = implode(', ', $preParams);
+
+        return redirect()->route('rooms.available_rooms', compact('params'));
     }
 }
