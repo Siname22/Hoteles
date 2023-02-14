@@ -51,7 +51,7 @@ class RoomAssignmentController extends Controller
 
     public function show(RoomAssignment $roomAssignment)
     {
-        return view('paginas/roomAssignments/show', compact('roomAssignment'));
+        return view('paginas/clientes/roomAssignments/show', compact('roomAssignment'));
     }
 
 

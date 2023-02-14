@@ -12,7 +12,7 @@
             <th>Terraza</th>
             <th>Ver</th>
         </tr>
-        @foreach ($availableRooms as $room)
+        @foreach ($prms[1] as $room)
             <tr>
 
                 <td>
@@ -36,7 +36,11 @@
                 </td>
 
                 <td>
-                    <a href='{{ route('rooms.show', $room->id ) }}'><button>Ver</button></a>
+                    @php
+                        $id = explode(', ', $prms[0])[0];
+                        $params = $prms[0].", ".$room->id;
+                    @endphp
+                    <a href='{{ route('rooms.mostrar_habitacion', $params ) }}'><button class="button">Ver</button></a>
                 </td>
             </tr>
         @endforeach
@@ -45,8 +49,8 @@
 
     <br>
 
-    <form action="clientHome" method="get">
-        <input type="submit" value="Volver">
+    <form action="{{ route('rooms.filter', compact('id')) }}" method="get">
+        <input type="submit" value="Volver" class="button">
     </form>
 
 </x-zz.base2>

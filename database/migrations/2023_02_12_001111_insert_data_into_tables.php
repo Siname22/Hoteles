@@ -84,13 +84,11 @@ return new class extends Migration
 
         //RESERVAS
         $reserva1 = DB::table('bookings')->insertGetId([
-            'codigo' => 'aaaa',
             'precio' => 500.0,
             'observacion' => 'reserva satisfactoria',
             'client_id' => $cliente1
         ]);
         $reserva2 = DB::table('bookings')->insertGetId([
-            'codigo' => 'aaab',
             'precio' => 350.0,
             'observacion' => 'reserva complicada',
             'client_id' => $cliente2

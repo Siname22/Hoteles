@@ -48,6 +48,9 @@
     </table>
 
     <br><br>
-    <button class='button'><a href='{{ route('roomAssignments', $roomAssignment->booking_id) }}'>Atrás</a></button>
+    @php $id = $roomAssignment->id @endphp
+    <form action="{{ route('roomAssignments.returnToIndex', compact('id')) }}" method="get">
+        <input type="submit" class="button" value="Atrás" />
+    </form>
 
 </x-zz.base2>

@@ -12,7 +12,7 @@
             <th colspan='2'>Acciones</th>
         </tr>
 
-        @foreach ($roomAssignments as $roomAssignment)
+        @foreach ($params[0] as $roomAssignment)
 
             <tr>
                 <td>{{ $roomAssignment->nombre }}</td>
@@ -42,11 +42,11 @@
 
     </table>
     <br><br>
-
-    <form action="rooms" method="get">
+    @php $id = $params[1] @endphp
+    <form action="{{ route('rooms.filter', compact('id')) }}" method="get">
         <input type="submit" value="Añadir Habitación" class='button'>
     </form>
-    <form action="bookings" method="get">
+    <form action="{{ route('bookings') }}" method="get">
         <input type="submit" value="Finalizar Reserva" class='button'>
     </form>
 

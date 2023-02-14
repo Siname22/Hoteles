@@ -90,7 +90,7 @@ class RoomController extends Controller
         return redirect()->route('rooms.index');
     }
 
-    public function receive_params(Request $request)
+    public function receive_params(Request $request, $id)
     {
         $this->validate($request, [
             'fecha_entrada' =>  'required',
@@ -108,7 +108,7 @@ class RoomController extends Controller
             $terraza = 0;
         }
 
-        $preParams = [$fechaEntrada, $fechaSalida, $numeroCamas, $terraza];
+        $preParams = [$id, $fechaEntrada, $fechaSalida, $numeroCamas, $terraza];
         $params = implode(', ', $preParams);
 
         return redirect()->route('rooms.available_rooms', compact('params'));
