@@ -12,6 +12,6 @@
         <input class='button' type='submit' name='crear' value='Crear habitaciónes' />
     </form><br/>
 
-    <a href='{{ route('rooms.index') }}'>Volver al listado</a>
+    <a href='{{ route('rooms.index') }}' class='button'>Volver al listado</a>
 
 </x-zz.base>

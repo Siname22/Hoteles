@@ -28,6 +28,6 @@
     <br>
 
 
-    <a href = '{{ route('rooms.index') }}'> <button> Volver </button> </a>
+    <a href = '{{ route('rooms.index') }}'> <button class='button'> Volver </button> </a>
 
 </x-zz.base2>

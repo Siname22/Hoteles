@@ -39,7 +39,7 @@
                 <form action='{{ route('roomAssignments.destroy', $roomAssignment) }}' method='post'
                       style='margin-top: 13px'>
                     @method('delete')
-                    <input type='submit' value='Eliminar'>
+                    <input type='submit' value='Eliminar' class='button'>
                 </form>
             </td>
 
@@ -48,6 +48,6 @@
     </table>
 
     <br><br>
-    <button><a href='{{ route('roomAssignments', $roomAssignment->booking_id) }}' id='no_subrayado'>Atrás</a></button>
+    <button class='button'><a href='{{ route('roomAssignments', $roomAssignment->booking_id) }}'>Atrás</a></button>
 
 </x-zz.base2>

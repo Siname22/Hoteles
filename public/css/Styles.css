@@ -278,28 +278,33 @@ body {
     color: white;
 }
 
-
 #logo_left {
-    width: 100%;
-    height: 100%;
+    width: 35%;
     float: left;
     margin-left: -20px;
 }
 
 #enlace_left {
-    width: 10%;
-    height: 10%;
+    width: 40%;
     float: left;
     margin-left: -1500px;
     margin-top: 50px;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
 }
+
 #fila {
     height: 30px;
 }
-#no_subrayado {
+
+.button {
+    background-color: blueviolet;
+    color: #f7f7f7;
     text-decoration: none;
-    color: black;
-    padding-top: 2px;
 }
 
 #num_camas {width: 50px}

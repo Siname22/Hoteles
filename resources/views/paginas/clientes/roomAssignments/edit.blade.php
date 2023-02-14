@@ -9,12 +9,12 @@
 
         <x-roomAssignments.campos :params='$params' />
 
-        <br><br><input id='submit' type='submit' value='Editar reserva de habitación'/>
+        <br><br><input id='submit' type='submit' value='Editar reserva de habitación' class='button'/>
     </form>
 
     <form action='{{ route('roomAssignments.destroy', $params['roomAssignment']) }}' method='post'>
         @method('delete')
-        <input type='submit' value='Eliminar Reserva de habitación'>
+        <input type='submit' value='Eliminar Reserva de habitación' class='button'>
     </form><br>
 
 

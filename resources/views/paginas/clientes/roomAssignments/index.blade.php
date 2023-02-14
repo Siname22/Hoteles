@@ -24,7 +24,7 @@
                         @method('get')
                         @csrf
 
-                        <button type='submit'>Detalles</button>
+                        <button type='submit' class='button'>Detalles</button>
                     </form>
                 </td>
                 <td>
@@ -33,7 +33,7 @@
                         @method('delete')
                         @csrf
 
-                        <button type='submit'>Eliminar</button>
+                        <button type='submit' class='button'>Eliminar</button>
                     </form>
                 </td>
             </tr>
@@ -44,10 +44,10 @@
     <br><br>
 
     <form action="rooms" method="get">
-        <input type="submit" value="Añadir Habitación">
+        <input type="submit" value="Añadir Habitación" class='button'>
     </form>
     <form action="bookings" method="get">
-        <input type="submit" value="Finalizar Reserva">
+        <input type="submit" value="Finalizar Reserva" class='button'>
     </form>
 
 </x-zz.base2>
