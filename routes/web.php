@@ -3,12 +3,12 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoomAssignmentController;
+use App\Http\Controllers\RoomBookingController;
 use App\Http\Controllers\RoomController;
 use App\Models\Booking;
 use App\Models\Client;
 use App\Models\Room;
-use App\Models\RoomAssignment;
+use App\Models\RoomBooking;
 use Carbon\Carbon;
 use Illuminate\HTTP\Request;
 use Illuminate\Support\Facades\DB;
@@ -44,16 +44,16 @@ Route::get('/inicio', function () {
     return view('paginas/clientes/bookings/index', compact('bookings', 'client'));
 })->middleware(['auth', 'verified'])->name('bookings');
 
-//Ruta de RoomAssignment
-Route::get('/roomAssignments{bookingId}', function ($bookingId) {
-    $roomAssignments = DB::table('room_assignments')->join('rooms', 'room_id', 'LIKE', 'rooms.id')
-        ->select('room_assignments.*', 'rooms.nombre')
+//Ruta de RoomBooking
+Route::get('/roomBookings{bookingId}', function ($bookingId) {
+    $roomAssignments = DB::table('room_bookings')->join('rooms', 'room_id', 'LIKE', 'rooms.id')
+        ->select('room_bookings.*', 'rooms.nombre')
         ->where('booking_id', $bookingId)->get();
     $params = [$roomAssignments, $bookingId];
-    return view('paginas/clientes/roomAssignments/index', compact('params'));
-})->middleware(['auth', 'verified'])->name('roomAssignments');
+    return view('paginas/clientes/roomBookings/index', compact('params'));
+})->middleware(['auth', 'verified'])->name('roomBookings');
 
-
+//Ruta de Rooms
 Route::get('/rooms/available{params}', function($params) {
 
     $arrParams = explode(', ', $params);
@@ -68,19 +68,19 @@ Route::get('/rooms/available{params}', function($params) {
         ->where('rooms.terraza','=',DB::raw($terraza))
         ->where('rooms.estado','LIKE', DB::raw('\'disp\''))->get();
 
-    $roomsFuera = RoomAssignment::select('*')
-        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(`room_assignments`.`fecha_entrada`, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
-        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(`room_assignments`.`fecha_salida`, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
+    $roomsFuera = RoomBooking::select('*')
+        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(`room_bookings`.`fecha_entrada`, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(`room_bookings`.`fecha_salida`, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
         ->get();
 
-    $roomsEntradaDentro = RoomAssignment::select('*')
-        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
-        ->where(DB::raw(0), '>', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+    $roomsEntradaDentro = RoomBooking::select('*')
+        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+        ->where(DB::raw(0), '>', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_salida, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
         ->get();
 
-    $roomsSalidaDentro = RoomAssignment::select('*')
-        ->where(DB::raw(0), '<', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_entrada, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
-        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(room_assignments.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
+    $roomsSalidaDentro = RoomBooking::select('*')
+        ->where(DB::raw(0), '<', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_entrada, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
+        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
         ->get();
 
     $availableRooms = [];
@@ -140,14 +140,14 @@ Route::get('/rooms/show{params}', function($params){
 
 Route::get('/rooms/create{paramsCreate}', function($paramsCreate){
     $paramsArray = explode(", ", $paramsCreate);
-    $roomAssignment = new RoomAssignment();
-    $roomAssignment->room_id = $paramsArray[5];
-    $roomAssignment->booking_id = $paramsArray[0];
-    $roomAssignment->fecha_entrada = $paramsArray[1];
-    $roomAssignment->fecha_salida = $paramsArray[2];
-    $roomAssignment->save();
+    $roomBooking = new RoomBooking();
+    $roomBooking->room_id = $paramsArray[5];
+    $roomBooking->booking_id = $paramsArray[0];
+    $roomBooking->fecha_entrada = $paramsArray[1];
+    $roomBooking->fecha_salida = $paramsArray[2];
+    $roomBooking->save();
     $bookingId = $paramsArray[0];
-    return redirect()->route('roomAssignments', compact('bookingId'));
+    return redirect()->route('roomBookings', compact('bookingId'));
 })->middleware(['auth', 'verified'])->name('rooms.auto_create_assignment');
 
 Route::get('/rooms/filter{id}', function($id) {
@@ -165,10 +165,10 @@ Route::get('/bookings/auto/create', function(){
 })->middleware(['auth', 'verified'])->name('bookings.auto_create');
 
 Route::get('/roomAsignments/return{id}', function($id){
-    $roomAssignment = RoomAssignment::select('*')->where('id', '=', DB::raw($id))->first();
+    $roomAssignment = RoomBooking::select('*')->where('id', '=', DB::raw($id))->first();
     $bookingId = $roomAssignment->booking_id;
-    return redirect()->route('roomAssignments', compact('bookingId'));
-})->middleware(['auth', 'verified'])->name('roomAssignments.returnToIndex');
+    return redirect()->route('roomBookings', compact('bookingId'));
+})->middleware(['auth', 'verified'])->name('roomBookings.returnToIndex');
 
 //Ruta de vuelta a clientHome
 Route::middleware('auth')->group(callback: function () {
@@ -180,7 +180,7 @@ Route::middleware('auth')->group(callback: function () {
         return view('paginas/clientes/clientHome/clientHome');
     });
 
-    Route::resource('roomAssignments', RoomAssignmentController::class);
+    Route::resource('roomBookings', RoomBookingController::class);
     Route::resource('bookings', BookingController::class);
     Route::resource('clients', ClientController::class);
     Route::resource('rooms', RoomController::class);

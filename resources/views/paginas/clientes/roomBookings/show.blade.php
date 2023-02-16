@@ -1,11 +1,11 @@
 <?php
-    $tipo = $roomAssignment->room->tipo;
-    if ($tipo == 'pr')
-        $tipo = 'Presidencial';
+$tipo = $roomBooking->room->tipo;
+if ($tipo == 'pr')
+    $tipo = 'Presidencial';
 
-    $estado = $roomAssignment->room->estado;
-    if ($estado == 'disp')
-        $estado = 'Disponible';
+$estado = $roomBooking->room->estado;
+if ($estado == 'disp')
+    $estado = 'Disponible';
 ?>
 
 <x-zz.base2>
@@ -21,22 +21,22 @@
         <th>Eliminar</th>
 
         <tr id='fila'>
-            <td>{{ $roomAssignment->room->nombre}}</td>
+            <td>{{ $roomBooking->room->nombre}}</td>
 
             <td>
                 {{ $tipo }}
             </td>
 
             <td>
-                {{ $roomAssignment->fecha_entrada }}
+                {{ $roomBooking->fecha_entrada }}
             </td>
 
             <td>
-                {{ $roomAssignment->fecha_salida }}
+                {{ $roomBooking->fecha_salida }}
             </td>
 
             <td>
-                <form action='{{ route('roomAssignments.destroy', $roomAssignment) }}' method='post'
+                <form action='{{ route('roomBookings.destroy', $roomBooking) }}' method='post'
                       style='margin-top: 13px'>
                     @method('delete')
                     <input type='submit' value='Eliminar' class='button'>
@@ -48,9 +48,9 @@
     </table>
 
     <br><br>
-    @php $id = $roomAssignment->id @endphp
-    <form action="{{ route('roomAssignments.returnToIndex', compact('id')) }}" method="get">
-        <input type="submit" class="button" value="Atrás" />
+    @php $id = $roomBooking->id @endphp
+    <form action="{{ route('roomBookings.returnToIndex', compact('id')) }}" method="get">
+        <input type="submit" class="button" value="Atrás"/>
     </form>
 
 </x-zz.base2>

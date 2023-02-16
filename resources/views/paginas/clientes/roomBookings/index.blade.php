@@ -12,14 +12,14 @@
             <th colspan='2'>Acciones</th>
         </tr>
 
-        @foreach ($params[0] as $roomAssignment)
+        @foreach ($params[0] as $roomBooking)
 
             <tr>
-                <td>{{ $roomAssignment->nombre }}</td>
-                <td>{{ $roomAssignment->fecha_entrada }}</td>
-                <td>{{ $roomAssignment->fecha_salida }}</td>
+                <td>{{ $roomBooking->nombre }}</td>
+                <td>{{ $roomBooking->fecha_entrada }}</td>
+                <td>{{ $roomBooking->fecha_salida }}</td>
                 <td>
-                    <form action='{{ route('roomAssignments.show', $roomAssignment->id) }}' method='post'>
+                    <form action='{{ route('roomBookings.show', $roomBooking->id) }}' method='post'>
 
                         @method('get')
                         @csrf
@@ -28,7 +28,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action='{{ route('roomAssignments.destroy', $roomAssignment->id) }}' method='post'>
+                    <form action='{{ route('roomBookings.destroy', $roomBooking->id) }}' method='post'>
 
                         @method('delete')
                         @csrf

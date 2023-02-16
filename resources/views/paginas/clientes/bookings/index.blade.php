@@ -22,7 +22,7 @@
                 </td>
 
                 <td>
-                    <form action='{{ route('roomAssignments', $booking->id) }}'>
+                    <form action='{{ route('roomBookings', $booking->id) }}'>
                         <button type='submit' class='button'>Ver</button>
                     </form>
                 </td>

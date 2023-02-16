@@ -9,8 +9,8 @@ class Room extends Model
 {
     use HasFactory;
 
-    public function roomAssignments()
+    public function roomBookings()
     {
-        return $this->hasMany(RoomAssignment::class);
+        return $this->hasMany(RoomBooking::class);
     }
 }
