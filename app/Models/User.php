@@ -11,32 +11,39 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    public function client()
+    use HasFactory;
+    public function comprobarAutorizacion($iduser)
     {
-        $com = '"';
-        $client = DB::select('
-            SELECT
-                *
-            FROM
-                clients AS c INNER JOIN users AS u ON c.user_id LIKE u.id
-            WHERE c.user_id LIKE ' . $com . auth()->id() . $com);
-        return $client;
+        $cliente = Client::select('*')
+            ->where('user_id', '=', DB::raw($iduser))
+            ->first();
+
+        $employee = Employee::select('*')
+            ->where('user_id', '=', DB::raw($iduser))
+            ->first();
+
+        if ($cliente) {
+
+            $tipo = "Client";
+
+        } else {
+
+            if ($employee->rol == "admin") {
+
+                $tipo = "Administrador";
+
+            } elseif ($employee->rol == "") {
+
+                $tipo = "Recepcion";
+
+            } else {
+
+                $tipo = "RRHH";
+
+            }
+
+        }
+
+        return $tipo;
     }
 }
