@@ -54,75 +54,9 @@ Route::get('/roomBookings{bookingId}', function ($bookingId) {
 })->middleware(['auth', 'verified'])->name('roomBookings');
 
 //Ruta de Rooms
-Route::get('/rooms/available{params}', function($params) {
-
-    $arrParams = explode(', ', $params);
-
-    $fechaEntrada   =   $arrParams[1];
-    $fechaSalida    =   $arrParams[2];
-    $numeroCamas    =   $arrParams[3];
-    $terraza        =   $arrParams[4];
-
-    $roomsListadas = Room::select('*')
-        ->where('rooms.numero_camas','>=',DB::raw($numeroCamas))
-        ->where('rooms.terraza','=',DB::raw($terraza))
-        ->where('rooms.estado','LIKE', DB::raw('\'disp\''))->get();
-
-    $roomsFuera = RoomBooking::select('*')
-        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(`room_bookings`.`fecha_entrada`, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
-        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(`room_bookings`.`fecha_salida`, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
-        ->get();
-
-    $roomsEntradaDentro = RoomBooking::select('*')
-        ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_entrada, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
-        ->where(DB::raw(0), '>', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_salida, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
-        ->get();
-
-    $roomsSalidaDentro = RoomBooking::select('*')
-        ->where(DB::raw(0), '<', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_entrada, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
-        ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(room_bookings.fecha_salida, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
-        ->get();
-
-    $availableRooms = [];
-
-    foreach ($roomsListadas as $roomListada) {
-
-        $ocupada = false;
-
-        foreach ($roomsFuera as $roomFuera) {
-
-            if ($roomListada->id == $roomFuera->room_id) {
-                $ocupada = true;
-            }
-
-        }
-
-        foreach ($roomsEntradaDentro as $roomEntradaDentro) {
-
-            if ($roomListada->id == $roomEntradaDentro->room_id) {
-                $ocupada = true;
-            }
-
-        }
-
-        foreach ($roomsSalidaDentro as $roomSalidaDentro) {
-
-            if ($roomListada->id == $roomSalidaDentro->room_id) {
-                $ocupada = true;
-            }
-
-        }
-
-        if (!$ocupada) {
-            $availableRooms[] = $roomListada;
-        }
-
-    }
-
-    $prms = [$params, $availableRooms];
-
-    return view('paginas/clientes/rooms/index', compact('prms'));
-})->middleware(['auth', 'verified'])->name('rooms.available_rooms');
+Route::get('/rooms/available{params}', [
+    RoomController::class, 'checkAvailableRooms'
+])->middleware(['auth', 'verified'])->name('rooms.available_rooms');
 
 Route::get('/recibir/params{id}', [
     RoomController::class, 'receive_params'
@@ -173,7 +107,19 @@ Route::get('/roomAsignments/return{id}', function($id){
 //Ruta de vuelta a clientHome
 Route::middleware('auth')->group(callback: function () {
     Route::get('/', function () {
-        return view('paginas/clientes/clientHome/clientHome');
+        switch (auth()->user()->comprobarAutorizacion(auth()->id())) {
+            case "Administrador":
+                $rol = "Administrador";
+                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
+            case "Recepcion":
+                $rol = "Recepcion";
+                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
+            case "RRHH":
+                $rol = "RRHH";
+                return view('paginas/empleados/gestionarEmpleados/index', compact('rol'));
+            default:
+                return view('paginas/clientes/clientHome/clientHome');
+        }
     });
 
     Route::get('/clientHome', function () {
