@@ -46,10 +46,10 @@ Route::get('/inicio', function () {
 
 //Ruta de RoomBooking
 Route::get('/roomBookings{bookingId}', function ($bookingId) {
-    $roomAssignments = DB::table('room_bookings')->join('rooms', 'room_id', 'LIKE', 'rooms.id')
+    $roomBookings = DB::table('room_bookings')->join('rooms', 'room_id', 'LIKE', 'rooms.id')
         ->select('room_bookings.*', 'rooms.nombre')
         ->where('booking_id', $bookingId)->get();
-    $params = [$roomAssignments, $bookingId];
+    $params = [$roomBookings, $bookingId];
     return view('paginas/clientes/roomBookings/index', compact('params'));
 })->middleware(['auth', 'verified'])->name('roomBookings');
 
@@ -98,9 +98,9 @@ Route::get('/bookings/auto/create', function(){
     return redirect()->route('rooms.filter', compact('id'));
 })->middleware(['auth', 'verified'])->name('bookings.auto_create');
 
-Route::get('/roomAsignments/return{id}', function($id){
-    $roomAssignment = RoomBooking::select('*')->where('id', '=', DB::raw($id))->first();
-    $bookingId = $roomAssignment->booking_id;
+Route::get('/roomBookings/return{id}', function($id){
+    $roomBooking = RoomBooking::select('*')->where('id', '=', DB::raw($id))->first();
+    $bookingId = $roomBooking->booking_id;
     return redirect()->route('roomBookings', compact('bookingId'));
 })->middleware(['auth', 'verified'])->name('roomBookings.returnToIndex');
 
