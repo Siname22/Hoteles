@@ -9,7 +9,8 @@
 
         <x-clients.campos /><br><br>
 
-        <input class='button' type='submit' name='crear' value='Crear cliente'/>
+        <input class='button' type='submit' name='crear' value='GUARDAR'/>
+        <input class='button' type='submit' name='cancelar' value='CANCELAR'/>
     </form><br/>
 
     <a href='{{ route('clients.index') }}'>Volver al listado</a>
