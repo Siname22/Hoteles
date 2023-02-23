@@ -25,7 +25,7 @@
 
         </form>
         @if(isset($id))
-        <form action="{{ 'roomBookings.list' }}" method="post">
+        <form action="{{ route('roomBookings.list') }}" method="post">
             @csrf
             <input type="hidden" name="bookingId" value="{{ $id }}" />
             <input type="submit" value="Volver" class="button">
