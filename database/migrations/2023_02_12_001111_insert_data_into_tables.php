@@ -1,6 +1,10 @@
 <?php
+
+use App\Models\Booking;
+use App\Models\Room;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Hash;
 
@@ -73,12 +77,12 @@ return new class extends Migration
             'remember_token' => null
         ]);
         //EMPLEADOS
-        $empleado1= DB::table('employees')->insertGetId([
+        DB::table('employees')->insert([
             'user_id' => $employee1,
             'nombre'=> 'Javier',
             'apellidos' => 'Arroyo Molinos',
             'telefono' => '609106158',
-            'rol' => 'empleado'
+            'rol' => 'admin'
         ]);
 
 
@@ -94,19 +98,13 @@ return new class extends Migration
             'client_id' => $cliente2
         ]);
 
-        //ASIGNACIONES
-        DB::table('room_bookings')->insert([
-            'room_id' => $room1,
-            'booking_id' => $reserva1,
-            'fecha_entrada' => '2023-01-22 13:00:00',
-            'fecha_salida' => '2023-01-25 12:00:00'
-        ]);
-        DB::table('room_bookings')->insert([
-            'room_id' => $room2,
-            'booking_id' => $reserva2,
-            'fecha_entrada' => '2023-02-13 13:00:00',
-            'fecha_salida' => '2023-02-18 12:00:00'
-        ]);
+        $booking1 = Booking::find($reserva1);
+        $booking1->rooms()->attach($room1, ['fecha_entrada' => '2023-01-22 13:00:00',
+            'fecha_salida' => '2023-01-25 12:00:00']);
+
+        $booking2 = Booking::find($reserva2);
+        $booking2->rooms()->attach($room2, ['fecha_entrada' => '2023-02-13 13:00:00',
+            'fecha_salida' => '2023-02-18 12:00:00']);
 
     }
 

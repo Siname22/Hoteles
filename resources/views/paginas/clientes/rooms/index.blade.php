@@ -36,11 +36,19 @@
                 </td>
 
                 <td>
-                    @php
-                        $id = explode(', ', $prms[0])[0];
-                        $params = $prms[0].", ".$room->id;
-                    @endphp
-                    <a href='{{ route('rooms.mostrar_habitacion', $params ) }}'><button class="button">Ver</button></a>
+
+                    <form action="{{ route('rooms.mostrar_habitacion') }}" method="post">
+                        @csrf
+                        <input type='hidden' name='fechaEntrada' value='{{ $prms[0][0] }}' />
+                        <input type='hidden' name='fechaSalida' value='{{ $prms[0][1] }}' />
+                        <input type='hidden' name='numeroCamas' value='{{ $prms[0][2] }}' />
+                        <input type='hidden' name='terraza' value='{{ $prms[0][3] }}' />
+                        <input type='hidden' name='roomId' value='{{ $room->id }}' />
+                        @if(sizeof($prms[0]) == 5)
+                        <input type='hidden' name='bookingId' value='{{ $prms[0][4] }}' />
+                        @endif
+                        <input type='submit' class='button' value='Ver' />
+                    </form>
                 </td>
             </tr>
         @endforeach
@@ -48,8 +56,15 @@
     </table><br><br>
 
     <br>
+    @if(sizeof($prms[0]) == 5)
+    <form action="{{ route('rooms.filter_add') }}" method="post">
+        @csrf
+        <input type="hidden" name="id" value="{{ $prms[0][4] }}" />
+    @else
+    <form action="{{ route('rooms.filter_create') }}" method="post">
+        @csrf
+    @endif
 
-    <form action="{{ route('rooms.filter', compact('id')) }}" method="get">
         <input type="submit" value="Volver" class="button">
     </form>
 

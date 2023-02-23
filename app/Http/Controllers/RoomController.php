@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomBooking;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
 class RoomController extends Controller
 {
@@ -47,9 +46,33 @@ class RoomController extends Controller
         $room->terraza = $request->terraza;
     }
 
-    public function show(Room $room)
+    public function show(Request $request)
     {
-        return view('paginas/rooms/show', compact('room'));
+        $this->validate($request, [
+            'fechaEntrada'  =>  'required',
+            'fechaSalida'   =>  'required',
+            'numeroCamas'   =>  'required',
+            'terraza'       =>  'required',
+            'roomId'        =>  'required',
+            'bookingId'     =>  ''
+        ]);
+
+        $params = [$request->fechaEntrada, $request->fechaSalida, $request->numeroCamas, $request->terraza,
+            $request->roomId];
+        if (isset($request->bookingId)) {
+            $params = [$request->fechaEntrada, $request->fechaSalida, $request->numeroCamas, $request->terraza,
+                $request->roomId, $request->bookingId];
+        }
+
+        $id = $request->roomId;
+
+        $room = Room::select('*')
+            ->where('id', '=', DB::raw($id))
+            ->first();
+
+        $prms = [$params, $room];
+
+        return view('paginas/clientes/rooms/show', compact('prms'));
     }
 
     public function edit(Room $room)
@@ -90,13 +113,14 @@ class RoomController extends Controller
         return redirect()->route('rooms.index');
     }
 
-    public function receive_params(Request $request, $id)
+    public function checkAvailableRooms(Request $request)
     {
         $this->validate($request, [
             'fecha_entrada' =>  'required',
             'fecha_salida'  =>  'required',
             'numero_camas'  =>  'required',
-            'terraza'       =>  ''
+            'terraza'       =>  '',
+            'bookingId'            => ''
         ]);
 
         $fechaEntrada   =   $request->fecha_entrada;
@@ -107,10 +131,87 @@ class RoomController extends Controller
         } else {
             $terraza = 0;
         }
+        $params = [$fechaEntrada, $fechaSalida, $numeroCamas, $terraza];
+        if (isset($request->bookingId)) {
+            $id = $request->bookingId;
+            $params = [$fechaEntrada, $fechaSalida, $numeroCamas, $terraza, $id];
+        }
 
-        $preParams = [$id, $fechaEntrada, $fechaSalida, $numeroCamas, $terraza];
-        $params = implode(', ', $preParams);
+        $roomsListadas = Room::select('*')
+            ->where('rooms.numero_camas','>=',DB::raw($numeroCamas))
+            ->where('rooms.terraza','=',DB::raw($terraza))
+            ->where('rooms.estado','LIKE', DB::raw('\'disp\''))->get();
 
-        return redirect()->route('rooms.available_rooms', compact('params'));
+        $roomsFuera = DB::table('booking_room')->select('*')
+            ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(`booking_room`.`fecha_entrada`, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+            ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(`booking_room`.`fecha_salida`, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
+            ->get();
+
+        $roomsEntradaDentro = DB::table('booking_room')->select('*')
+            ->where(DB::raw(0), '<=', DB::raw('(SELECT DATEDIFF(`booking_room`.`fecha_entrada`, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+            ->where(DB::raw(0), '>', DB::raw('(SELECT DATEDIFF(`booking_room`.`fecha_salida`, '."'".Carbon::parse($fechaEntrada)->toDateString()."'".'))'))
+            ->get();
+
+        $roomsSalidaDentro = DB::table('booking_room')->select('*')
+            ->where(DB::raw(0), '<', DB::raw('(SELECT DATEDIFF(`booking_room`.`fecha_entrada`, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
+            ->where(DB::raw(0), '>=', DB::raw('(SELECT DATEDIFF(`booking_room`.`fecha_salida`, '."'".Carbon::parse($fechaSalida)->toDateString()."'".'))'))
+            ->get();
+
+        $availableRooms = [];
+
+        foreach ($roomsListadas as $roomListada) {
+
+            $ocupada = false;
+
+            foreach ($roomsFuera as $roomFuera) {
+
+                if ($roomListada->id == $roomFuera->room_id) {
+                    $ocupada = true;
+                }
+
+            }
+
+            foreach ($roomsEntradaDentro as $roomEntradaDentro) {
+
+                if ($roomListada->id == $roomEntradaDentro->room_id) {
+                    $ocupada = true;
+                }
+
+            }
+
+            foreach ($roomsSalidaDentro as $roomSalidaDentro) {
+
+                if ($roomListada->id == $roomSalidaDentro->room_id) {
+                    $ocupada = true;
+                }
+
+            }
+
+            if (!$ocupada) {
+                $availableRooms[] = $roomListada;
+            }
+
+        }
+
+        $prms = [$params, $availableRooms];
+
+        return view('paginas/clientes/rooms/index', compact('prms'));
     }
+
+    public function filter()
+    {
+        return view('paginas/clientes/rooms/filter');
+    }
+
+    public function filterWithId(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required'
+        ]);
+
+        $id = $request->id;
+
+        return view('paginas/clientes/rooms/filter', compact('id'));
+    }
+
 }

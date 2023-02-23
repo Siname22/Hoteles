@@ -1,13 +1,3 @@
-<?php
-$tipo = $roomBooking->room->tipo;
-if ($tipo == 'pr')
-    $tipo = 'Presidencial';
-
-$estado = $roomBooking->room->estado;
-if ($estado == 'disp')
-    $estado = 'Disponible';
-?>
-
 <x-zz.base2>
 
     <x-slot:titulo>M2H - Detalles Habitación</x-slot:titulo>
@@ -21,24 +11,26 @@ if ($estado == 'disp')
         <th>Eliminar</th>
 
         <tr id='fila'>
-            <td>{{ $roomBooking->room->nombre}}</td>
+            <td>{{ $roomBooking['nombre']}}</td>
 
             <td>
-                {{ $tipo }}
+                {{ $roomBooking['tipo'] }}
             </td>
 
             <td>
-                {{ $roomBooking->fecha_entrada }}
+                {{ $roomBooking['fecha_entrada'] }}
             </td>
 
             <td>
-                {{ $roomBooking->fecha_salida }}
+                {{ $roomBooking['fecha_salida'] }}
             </td>
 
             <td>
-                <form action='{{ route('roomBookings.destroy', $roomBooking) }}' method='post'
+                <form action='{{ route('roomBookings.eliminate') }}' method='post'
                       style='margin-top: 13px'>
-                    @method('delete')
+                    @csrf
+                    <input type='hidden' name='roomId' value='{{ $roomBooking['room_id'] }}' />
+                    <input type='hidden' name='bookingId' value='{{ $roomBooking['booking_id'] }}' />
                     <input type='submit' value='Eliminar' class='button'>
                 </form>
             </td>
@@ -48,8 +40,9 @@ if ($estado == 'disp')
     </table>
 
     <br><br>
-    @php $id = $roomBooking->id @endphp
-    <form action="{{ route('roomBookings.returnToIndex', compact('id')) }}" method="get">
+    <form action="{{ route('roomBookings.list') }}" method="post">
+        @csrf
+        <input type='hidden' name='bookingId' value='{{ $roomBooking['booking_id'] }}' />
         <input type="submit" class="button" value="Atrás"/>
     </form>
 

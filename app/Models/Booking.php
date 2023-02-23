@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Booking extends Model
 {
@@ -13,18 +14,8 @@ class Booking extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function roomBooking()
+    public function rooms()
     {
-        return $this->hasMany(RoomBooking::class);
-    }
-
-    /**
-     * @param $query
-     * @param $id
-     * @return mixed
-     */
-    public function scopeBookings($query, $id)
-    {
-        return $query->where('client_id', $id);
+        return $this->belongsToMany(Room::class)->withPivot('id', 'room_id', 'fecha_entrada', 'fecha_salida');
     }
 }

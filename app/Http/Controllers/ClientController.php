@@ -75,4 +75,21 @@ class ClientController extends Controller
         $client->delete();
         return redirect()->route('clients.index');
     }
+
+    public function comprobarAutorizacion()
+    {
+        switch (auth()->user()->comprobarAutorizacion(auth()->id())) {
+            case "Administrador":
+                $rol = "Administrador";
+                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
+            case "Recepcion":
+                $rol = "Recepcion";
+                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
+            case "RRHH":
+                $rol = "RRHH";
+                return view('paginas/empleados/gestionarEmpleados/index', compact('rol'));
+            default:
+                return view('paginas/clientes/clientHome/clientHome');
+        }
+    }
 }

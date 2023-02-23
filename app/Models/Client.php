@@ -17,14 +17,4 @@ class Client extends Model
     {
         return $this->belongsTo(User::class)->get();
     }
-
-    /**
-     * @param $query
-     * @param $id
-     * @return mixed
-     */
-    public function scopeClient($query, $id)
-    {
-        return $query->where('user_id', $id);
-    }
 }

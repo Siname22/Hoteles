@@ -22,7 +22,9 @@
                 </td>
 
                 <td>
-                    <form action='{{ route('roomBookings', $booking->id) }}'>
+                    <form action='{{ route('roomBookings.list') }}' method="post">
+                        @csrf
+                        <input type='hidden' name='bookingId' value='{{ $booking->id }}' />
                         <button type='submit' class='button'>Ver</button>
                     </form>
                 </td>
@@ -31,7 +33,6 @@
                     <form action='{{ route('bookings.destroy', $booking->id) }}' method='post'>
                         @method('delete')
                         @csrf
-
                         <button type='submit' class='button'>Eliminar</button>
                     </form>
                 </td>
@@ -41,7 +42,7 @@
     </table>
     <br><br>
 
-    <form action="clientHome" method="get">
+    <form action="{{ route('client_home') }}" method="get">
         <input type="submit" value="Volver" class='button'>
     </form>
 

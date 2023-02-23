@@ -17,21 +17,36 @@
             <td>{{ $prms[1]->terraza == 1 ? "Sí" : "No" }}</td>
         </tr>
 
-
     </table>
 
     <br>
-    @php
-        $paramsCreate = $prms[0].", ".$prms[1]->id;
-        $params = $prms[0];
-    @endphp
-    <form action='{{ route('rooms.auto_create_assignment', compact('paramsCreate')) }}' method='get'>
-
+    @if(sizeof($prms[0]) == 6)
+    <form action='{{ route('rooms.auto_create_assignment') }}' method='post'>
+        @csrf
+        <input type='hidden' name='fechaEntrada' value='{{ $prms[0][0] }}' />
+        <input type='hidden' name='fechaSalida' value='{{ $prms[0][1] }}' />
+        <input type='hidden' name='roomId' value='{{ $prms[0][4] }}' />
+        <input type='hidden' name='bookingId' value='{{ $prms[0][5] }}' />
+    @else
+    <form action='{{ route('bookings.auto_create') }}' method='post'>
+        @csrf
+        <input type='hidden' name='fechaEntrada' value='{{ $prms[0][0] }}' />
+        <input type='hidden' name='fechaSalida' value='{{ $prms[0][1] }}' />
+        <input type='hidden' name='roomId' value='{{ $prms[0][4] }}' />
+    @endif
         <input class='button' type='submit' value='Añadir Habitación'/>
     </form>
     <br>
 
-
-    <a href = '{{ route('rooms.available_rooms', compact('params')) }}'> <button class='button'> Volver </button> </a>
+    <form action='{{ route('rooms.available_rooms') }}' method='post'>
+        <input type='hidden' name='fechaEntrada' value='{{ $prms[0][0] }}' />
+        <input type='hidden' name='fechaSalida' value='{{ $prms[0][1] }}' />
+        <input type='hidden' name='numeroCamas' value='{{ $prms[0][2] }}' />
+        <input type='hidden' name='terraza' value='{{ $prms[0][3] }}' />
+        @if(sizeof($prms[0]) == 6)
+        <input type='hidden' name='bookingId' value='{{ $prms[0][5] }}' />
+        @endif
+        <input class='button' type='submit' value='Volver'/>
+    </form>
 
 </x-zz.base2>

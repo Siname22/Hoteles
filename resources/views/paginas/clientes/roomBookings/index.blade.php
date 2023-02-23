@@ -15,25 +15,24 @@
         @foreach ($params[0] as $roomBooking)
 
             <tr>
-                <td>{{ $roomBooking->nombre }}</td>
-                <td>{{ $roomBooking->fecha_entrada }}</td>
-                <td>{{ $roomBooking->fecha_salida }}</td>
+                <td>{{ $roomBooking['nombre'] }}</td>
+                <td>{{ $roomBooking['fecha_entrada'] }}</td>
+                <td>{{ $roomBooking['fecha_salida'] }}</td>
                 <td>
-                    <form action='{{ route('roomBookings.show', $roomBooking->id) }}' method='post'>
-
-                        @method('get')
+                    <form action='{{ route('roomBookings.mostrar') }}' method='post'>
                         @csrf
-
-                        <button type='submit' class='button'>Detalles</button>
+                        <input type='hidden' name='roomId' value='{{ $roomBooking['room_id'] }}' />
+                        <input type='hidden' name='roomBookingId' value='{{ $roomBooking['id'] }}' />
+                        <input type='hidden' name='bookingId' value='{{ $params[1] }}' />
+                        <input type='submit' class='button'value='Detalles' />
                     </form>
                 </td>
                 <td>
-                    <form action='{{ route('roomBookings.destroy', $roomBooking->id) }}' method='post'>
-
-                        @method('delete')
+                    <form action='{{ route('roomBookings.eliminate') }}' method='post'>
                         @csrf
-
-                        <button type='submit' class='button'>Eliminar</button>
+                        <input type='hidden' name='roomId' value='{{ $roomBooking['room_id'] }}' />
+                        <input type='hidden' name='bookingId' value='{{ $params[1] }}' />
+                        <input type='submit' class='button' value='Eliminar'>
                     </form>
                 </td>
             </tr>
@@ -43,10 +42,13 @@
     </table>
     <br><br>
     @php $id = $params[1] @endphp
-    <form action="{{ route('rooms.filter', compact('id')) }}" method="get">
+    <form action="{{ route('rooms.filter_add') }}" method="post">
+        @csrf
+        <input type='hidden' name='id' value='{{ $id }}' />
         <input type="submit" value="Añadir Habitación" class='button'>
     </form>
-    <form action="{{ route('bookings') }}" method="get">
+    <form action="{{ route('bookings') }}" method="post">
+        @csrf
         <input type="submit" value="Finalizar Reserva" class='button'>
     </form>
 
