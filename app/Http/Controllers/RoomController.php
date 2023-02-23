@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Room;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,12 +16,12 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::orderBy('codigo')->get();
-        return view('paginas/rooms/index', compact('rooms'));
+        return view('paginas/clientes/rooms/index', compact('rooms'));
     }
 
     public function create()
     {
-        return view('paginas/rooms/create');
+        return view('paginas/clientes/rooms/create');
     }
 
     public function store(Request $request)
@@ -49,12 +50,18 @@ class RoomController extends Controller
 
     public function show(Room $room)
     {
-        return view('paginas/rooms/show', compact('room'));
+        $rooms = Room::orderBy('codigo')->get();
+        $bookings = Booking::orderBy('id')->get();
+        $params = [
+            'rooms' => $rooms,
+            'bookings' => $bookings
+        ];
+        return view('paginas/clientes/rooms/show', compact('room','params'));
     }
 
     public function edit(Room $room)
     {
-        return view('paginas/rooms/edit', compact('room'));
+        return view('paginas/clientes/rooms/edit', compact('room'));
     }
 
     public function update(Request $request, Room $room)

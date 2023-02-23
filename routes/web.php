@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomBookingController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\EmployeeController;
 use App\Models\Booking;
 use App\Models\Client;
 use App\Models\Room;
@@ -34,6 +35,35 @@ Route::get('/inicio/empleados', function (){
     $employee = (array) DB::table('employees')->where('user_id',auth()->id()->first());
     return view('paginas/empleados/empleadoHome', compact('employee'));
 });
+
+Route::get('employee',function (){
+    return view('paginas/empleados/gestionarEmpleados/index');
+})->middleware(['auth', 'verified'])->name('employees');
+
+Route::get('employeeList',function (){
+    $employees = DB::table('employees')->get();
+    return view('paginas/empleados/employees/index', compact('employees'));
+})->middleware(['auth', 'verified'])->name('employeeList');
+
+Route::get('createEmployee',function (){
+    $employees = DB::table('employees')->get();
+    return view('paginas/empleados/employees/create', compact('employees'));
+})->middleware(['auth', 'verified'])->name('createEmployee');
+
+Route::get('editEmployee',function (){
+    $employees = DB::table('employees')->get();
+    return view('paginas/empleados/employees/edit', compact('employees'));
+})->middleware(['auth', 'verified'])->name('editEmployee');
+
+
+// Ruta Index de Habitaciones (Empleados)  23-2-23
+
+Route::get('roomsList',function (){
+    return view('paginas/clientes/rooms/roomIndex');
+})->middleware(['auth', 'verified'])->name('roomsList');
+
+
+
 //Rutas de las vistas del cliente
 //Ruta de inicio de clientes
 Route::get('/inicio', function () {
@@ -116,7 +146,7 @@ Route::middleware('auth')->group(callback: function () {
                 return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
             case "RRHH":
                 $rol = "RRHH";
-                return view('paginas/empleados/gestionarEmpleados/index', compact('rol'));
+                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
             default:
                 return view('paginas/clientes/clientHome/clientHome');
         }
@@ -130,6 +160,7 @@ Route::middleware('auth')->group(callback: function () {
     Route::resource('bookings', BookingController::class);
     Route::resource('clients', ClientController::class);
     Route::resource('rooms', RoomController::class);
+    Route::resource('employees', EmployeeController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

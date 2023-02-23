@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('apellidos', 60);
             $table->string('telefono', 20);
             $table->string('rol');
-            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

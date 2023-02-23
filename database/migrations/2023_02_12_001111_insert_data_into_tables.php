@@ -69,11 +69,10 @@ return new class extends Migration
             'name' => 'empleado1',
             'email' => 'empleado1@mail.laravel',
             'email_verified_at' => null,
-            'password' => Hash::make($passwordEmployee1),
-            'remember_token' => null
+            'password' => Hash::make($passwordEmployee1)
         ]);
         //EMPLEADOS
-        $empleado1= DB::table('employees')->insertGetId([
+        $employee1= DB::table('employees')->insertGetId([
             'user_id' => $employee1,
             'nombre'=> 'Javier',
             'apellidos' => 'Arroyo Molinos',

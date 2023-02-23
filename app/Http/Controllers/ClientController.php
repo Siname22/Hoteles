@@ -11,12 +11,12 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::orderBy('nombre')->get();
-        return view('paginas/clients/index', compact('clients'));
+        return view('paginas/clientes/clients/index', compact('clients'));
     }
 
     public function create()
     {
-        return view('paginas/clients/create');
+        return view('paginas/clientes/clients/create');
     }
 
     public function store(Request $request)
@@ -42,12 +42,12 @@ class ClientController extends Controller
 
     public function show(Client $client)
     {
-        return view('paginas/clients/show', compact('client'));
+        return view('paginas/clientes/clients/show', compact('client'));
     }
 
     public function edit(Client $client)
     {
-        return view('paginas/clients/edit', compact('client'));
+        return view('paginas/clientes/clients/edit', compact('client'));
     }
 
     public function update(Request $request, Client $client)

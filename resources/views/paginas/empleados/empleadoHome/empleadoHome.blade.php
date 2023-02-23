@@ -1,9 +1,6 @@
 <?php
 
 ?>
-<?php
-
-?>
 
 <html lang='es'>
 <head>
@@ -13,7 +10,6 @@
 <body>
 <div id='div_logo'>
     <a id='div_logo'>
-        </form>
         <img src="/img/logofinal.png" id='logo' alt='logo M2H' title='M2H logo'>
     </a>
 </div>
@@ -22,15 +18,15 @@
 <br/>
 <div id='div_form_empleado'>
     <form action="employee">
-        <input type="submit" value="GESTION DE EMPLEADOS" id='gestion_empleados'>
+        <input type="submit" value="GESTION DE EMPLEADOS" id='gestion_empleados' class="button">
     </form>
 
     <form action="clients">
-        <input type="submit" value="GESTION DE CLIENTES" id='gestion_clientes'>
+        <input type="submit" value="GESTION DE CLIENTES" id='gestion_clientes' class="button">
     </form>
 
-    <form action="rooms">
-        <input type="submit" value="GESTION DE HABITACIONES" id='gestion_habitaciones'>
+    <form action="roomsList">
+        <input type="submit" value="GESTION DE HABITACIONES" id='gestion_habitaciones' class="button">
     </form>
 </div>
 </body>
