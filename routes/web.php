@@ -65,6 +65,7 @@ Route::post('/roomBookings/eliminate/', [
     BookingController::class, 'removeBookingRoom'
 ])->middleware(['auth', 'verified'])->name('roomBookings.eliminate');
 
+// Cerrar sesión
 Route::get('/logout/', [
     AuthenticatedSessionController::class, 'destroy'
 ])->middleware(['auth', 'verified'])->name('user.logout');
