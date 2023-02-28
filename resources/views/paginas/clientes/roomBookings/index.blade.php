@@ -20,15 +20,17 @@
                 <td>{{ $roomBooking['fecha_salida'] }}</td>
                 <td>
                     <form action='{{ route('roomBookings.mostrar') }}' method='post'>
+                        @method('post')
                         @csrf
                         <input type='hidden' name='roomId' value='{{ $roomBooking['room_id'] }}' />
                         <input type='hidden' name='roomBookingId' value='{{ $roomBooking['id'] }}' />
                         <input type='hidden' name='bookingId' value='{{ $params[1] }}' />
-                        <input type='submit' class='button'value='Detalles' />
+                        <input type='submit' class='button' value='Detalles' />
                     </form>
                 </td>
                 <td>
                     <form action='{{ route('roomBookings.eliminate') }}' method='post'>
+                        @method('post')
                         @csrf
                         <input type='hidden' name='roomId' value='{{ $roomBooking['room_id'] }}' />
                         <input type='hidden' name='bookingId' value='{{ $params[1] }}' />
@@ -43,11 +45,13 @@
     <br><br>
     @php $id = $params[1] @endphp
     <form action="{{ route('rooms.filter_add') }}" method="post">
+        @method('post')
         @csrf
         <input type='hidden' name='id' value='{{ $id }}' />
         <input type="submit" value="Añadir Habitación" class='button'>
     </form>
     <form action="{{ route('bookings') }}" method="post">
+        @method('post')
         @csrf
         <input type="submit" value="Finalizar Reserva" class='button'>
     </form>

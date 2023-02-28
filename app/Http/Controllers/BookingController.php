@@ -127,7 +127,7 @@ class BookingController extends Controller
             $roomBookings[] = ['id' => $room->pivot->id,'nombre' => $room->nombre, 'room_id' => $room->pivot->room_id,
                 'fecha_entrada' => $room->pivot->fecha_entrada, 'fecha_salida' => $room->pivot->fecha_salida];
         }
-        $params = [$roomBookings, $request->bookingId];
+        $params = [$roomBookings, $id];
 
         return view('paginas/clientes/roomBookings/index', compact('params'));
     }
