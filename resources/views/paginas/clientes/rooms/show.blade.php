@@ -21,14 +21,14 @@
 
     <br>
     @if(sizeof($prms[0]) == 6)
-    <form action='{{ route('rooms.auto_create_assignment') }}' method='post'>
+    <form action='{{ route('rooms.auto_create_assignment_with_id') }}' method='post'>
         @csrf
         <input type='hidden' name='fechaEntrada' value='{{ $prms[0][0] }}' />
         <input type='hidden' name='fechaSalida' value='{{ $prms[0][1] }}' />
         <input type='hidden' name='roomId' value='{{ $prms[0][4] }}' />
         <input type='hidden' name='bookingId' value='{{ $prms[0][5] }}' />
     @else
-    <form action='{{ route('bookings.auto_create') }}' method='post'>
+    <form action='{{ route('rooms.auto_create_assignment') }}' method='post'>
         @csrf
         <input type='hidden' name='fechaEntrada' value='{{ $prms[0][0] }}' />
         <input type='hidden' name='fechaSalida' value='{{ $prms[0][1] }}' />
