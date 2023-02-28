@@ -1,17 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoomBookingController;
 use App\Http\Controllers\RoomController;
-use App\Models\Booking;
-use App\Models\Client;
-use App\Models\Room;
-use App\Models\RoomBooking;
-use Carbon\Carbon;
-use Illuminate\HTTP\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,6 +65,10 @@ Route::post('/roomBookings/eliminate/', [
     BookingController::class, 'removeBookingRoom'
 ])->middleware(['auth', 'verified'])->name('roomBookings.eliminate');
 
+Route::get('/logout/', [
+    AuthenticatedSessionController::class, 'destroy'
+])->middleware(['auth', 'verified'])->name('user.logout');
+
 //Ruta de vuelta a clientHome
 Route::middleware('auth')->group(callback: function () {
 
@@ -80,7 +77,6 @@ Route::middleware('auth')->group(callback: function () {
         ClientController::class, 'comprobarAutorizacion'
     ])->name('client_home');
 
-    //Route::resource('roomBookings', RoomBookingController::class);
     Route::resource('bookings', BookingController::class);
     Route::resource('clients', ClientController::class);
     Route::resource('rooms', RoomController::class);
