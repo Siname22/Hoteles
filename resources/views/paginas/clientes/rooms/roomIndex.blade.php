@@ -26,9 +26,6 @@
         <input type="submit" value="CREAR HABITACIÓN" id='crear_habitacion' class="button">
     </form>
 
-    <form action="editEmployee">
-        <input type="submit" value="EDITAR HABITACIÓN" id='editar_habitacion' class="button">
-    </form>
 
 </div>
 </body>

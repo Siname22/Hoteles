@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -29,9 +32,19 @@ class EmployeeController extends Controller
             'apellidos' =>  'required',
             'telefono'  =>  'required',
             'rol'       =>  'required',
+            'email'     =>  'required',
+            'password'  =>  'required'
         ]);
 
+        $userId = DB::table('employees')->insertGetId([
+            'name'  =>  $request->nombre,
+            'email' =>  $request->email,
+            'email_verified_at' => null,
+            'password' => Hash::make($request->password),
+            'remember_token' => null
+        ]);
         $employee             =   new Employee();
+        $employee->user_id    =   $userId;
         $employee->nombre     =   $request->nombre;
         $employee->apellidos  =   $request->apellidos;
         $employee->telefono   =   $request->telefono;

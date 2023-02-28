@@ -136,25 +136,12 @@ Route::get('/roomBookings/return{id}', function($id){
 
 //Ruta de vuelta a clientHome
 Route::middleware('auth')->group(callback: function () {
-    Route::get('/', function () {
-        switch (auth()->user()->comprobarAutorizacion(auth()->id())) {
-            case "Administrador":
-                $rol = "Administrador";
-                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
-            case "Recepcion":
-                $rol = "Recepcion";
-                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
-            case "RRHH":
-                $rol = "RRHH";
-                return view('paginas/empleados/empleadoHome/empleadoHome', compact('rol'));
-            default:
-                return view('paginas/clientes/clientHome/clientHome');
-        }
-    });
+    Route::get('/clientHome', [
+        ClientController::class, 'comprobarAutorizacion'
+    ])->name('client_home');
 
-    Route::get('/clientHome', function () {
-        return view('paginas/clientes/clientHome/clientHome');
-    });
+
+
 
     Route::resource('roomBookings', RoomBookingController::class);
     Route::resource('bookings', BookingController::class);

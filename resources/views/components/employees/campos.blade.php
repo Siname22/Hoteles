@@ -7,8 +7,12 @@
 <label for="telefono">Tlf: </label>
 <input type="text" id="telefono" name="telefono" value="{{ $employee->telefono ?? '' }}"/> <br>
 
-<label for="dni">Rol: </label>
-<input type="text" id="rol" name="rol" value="{{ $employee->rol ?? '' }}"/> <br>
+<label for="rol">Rol: </label>
+<select name="rol" id="rol">
+    <option value="admin">Administrador</option>
+    <option value="recep">Recepcion</option>
+    <option value="RRHH">Recursos Humanos</option>
+</select>
 
 
 

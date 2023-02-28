@@ -5,6 +5,7 @@
 
     <form action = '{{ route('employees.update', $employee) }}' method = 'post'>
         @method('put')
+        @csrf
 
         <x-employees.campos :employee='$employee' />
 

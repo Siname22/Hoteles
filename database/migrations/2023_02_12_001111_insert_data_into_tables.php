@@ -77,7 +77,7 @@ return new class extends Migration
             'nombre'=> 'Javier',
             'apellidos' => 'Arroyo Molinos',
             'telefono' => '609106158',
-            'rol' => 'empleado'
+            'rol' => 'admin'
         ]);
 
 

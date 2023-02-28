@@ -8,7 +8,10 @@
         @csrf
 
         <x-employees.campos /><br><br>
-
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email"><br>
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" id="password"><br>
         <input class='button' type='submit' name='crear' value='Crear cliente'/>
     </form><br/>
 

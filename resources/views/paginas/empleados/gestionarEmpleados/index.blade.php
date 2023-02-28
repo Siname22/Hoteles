@@ -26,9 +26,6 @@
         <input type="submit" value="CREAR EMPLEADO" id='crear_empleado' class="button">
     </form>
 
-    <form action="editEmployee">
-        <input type="submit" value="EDITAR EMPLEADO" id='editar_empleado' class="button">
-    </form>
 
 </div>
 </body>

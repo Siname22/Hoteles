@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -74,5 +76,20 @@ class ClientController extends Controller
     {
         $client->delete();
         return redirect()->route('clients.index');
+    }
+
+    public function comprobarAutorizacion(){
+
+        $cliente = Client::select('*')->where('user_id', '=', DB::raw(auth()->id()))->first();
+        $empleado = Employee::select('*')->where('user_id', '=', DB::raw(auth()->id()))->first();
+
+        if(isset($cliente->id)){
+            return view("paginas/clientes/clientHome/clientHome");
+        }elseif($empleado->rol=="admin"){
+            return view("paginas/empleados/empleadoHome/empleadoHome");
+        }else{
+            return view("paginas/empleados/empleadoHome/empleadoHome");
+        }
+
     }
 }
