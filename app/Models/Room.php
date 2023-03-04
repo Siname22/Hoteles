@@ -12,6 +12,6 @@ class Room extends Model
 
     public function bookings()
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsToMany(Booking::class)->withPivot('id', 'booking_id', 'fecha_entrada', 'fecha_salida');
     }
 }
