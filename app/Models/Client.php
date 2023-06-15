@@ -17,4 +17,9 @@ class Client extends Model
     {
         return $this->belongsTo(User::class)->get();
     }
+
+    public function getMail()
+    {
+        return User::find($this->user_id)->email;
+    }
 }

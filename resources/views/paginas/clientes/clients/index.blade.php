@@ -24,7 +24,7 @@
                     <a href="{{ route('clients.show', $client) }}">{{$client->dni}}</a>
                 </td>
                 <td>
-                    <a href="{{ route('clients.show', $client) }}">{{$client->email}}</a>
+                    <a href="{{ route('clients.show', $client) }}">{{$client->getMail()}}</a>
                 </td>
                 <td>
                     <a href="{{ route('clients.show', $client) }}">{{$client->telefono}}</a>
@@ -40,4 +40,12 @@
             </tr>
         @endforeach
     </table><br><br>
+
+    <form action='{{ route('clients.create') }}' method='get'>
+        <input type='submit' value='Crear nuevo' class='button' />
+    </form>
+
+    <form action='{{ route('client_home') }}' method='get'>
+        <input type='submit' value='Volver' class='button' />
+    </form>
 </x-zz.base>

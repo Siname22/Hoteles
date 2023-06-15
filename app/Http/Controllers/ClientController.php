@@ -11,7 +11,7 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::orderBy('nombre')->get();
-        return view('paginas/clients/index', compact('clients'));
+        return view('paginas/clientes/clients/index', compact('clients'));
     }
 
     public function create()
